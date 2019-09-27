@@ -1,0 +1,21 @@
+<!--pages/bottom_nav1/cafeteria/cafeteria.wxml-->
+
+<movable-area style="background: none; width: {{width}}px; height: {{height}}px; top: {{top}}px; left: {{left}}px;" scale-area="false">
+    <movable-view class="map_view" x="{{-posX}}" y="{{-posY}}" direction="all" bindchange="onChange" bindscale="onScale" scale scale-value="1" scale-min="0.5" scale-max="2" bindtap="coords" out-of-bounds="true"
+    friction="100"
+    damping="50">
+    <image 
+          src="https://bluepiglet30.github.io/IFfilehost/cafeteria2.png"
+          style='height:500px; width:755px;'>
+      </image>   
+    </movable-view>
+  </movable-area>
+
+<view style="position:fixed; height:600rpx; width:600rpx; top:300rpx; left:75rpx" hidden="{{popup_hidden}}">
+    
+        <canvas canvas-id="popupCanvas" class="popup" bindtap="coords"> 
+        <button bindtap="close_popup" class="button">close</button>
+        <button bindtap="to_tickets" class="ticket_button">buy tickets</button>
+        <!-- {{popup_name}} -->
+    </canvas>
+    </view>

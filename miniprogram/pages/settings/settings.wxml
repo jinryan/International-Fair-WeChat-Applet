@@ -1,0 +1,71 @@
+<view class="profile_view">
+<image class="profile_pic" src="{{avatarUrl}}"/>
+</view>
+<view class="user_text"> <view style = "width: 100%; font-size: 40rpx; text-align: center; font-family:CO;">
+        <view style="height:12px"/>
+        User: {{userInfo.nickName}}
+      </view></view>
+
+<button class="button" bindtap="toLanguage">
+
+<view class="button_text">Language</view>
+<image src="/images/language.png" class="settings_icon"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+
+</button>
+
+<view class="button2" style = "z-index:5">
+<view class="button_text2">Dark Mode</view>
+<image src="/images/dark.png" class="settings_icon"></image>
+<switch class="switch" bindchange="changeBGC"/>
+</view>
+
+<button class="button" bindtap="toQRcode">
+<view class="button_text">View QR Code</view>
+<image src="/images/QR.png" class="settings_icon"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+</button>
+
+<button class="button2" bindtap="boothLogin">
+<view class="button_text">Login to Booth</view>
+<image src="/images/booth.png" class="settings_icon"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+</button>
+
+<picker class="button2" bindchange="changeMax" value="0" range="{{ticket_choices}}">
+<view class="button_text2">Maximum Transaction Amount</view>
+<image src="/images/trans.png" class="settings_icon"></image>
+</picker>
+
+
+<button class="button" bindtap="toSponsors"><view class="button_text">Sponsors</view>
+
+<image src="/images/sponsor.png" class="settings_icon"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+</button>
+
+<button class="button2" bindtap="toCredits">
+<view class="button_text">Credits</view>
+<image src="/images/x.png" class="settings_icon"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+</button>
+
+<button class="button2" bindtap="toFeedback">
+<view class="button_text">Feedback</view>
+<image src="/images/feedback.png" class="settings_icon"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+</button>
+
+<view style="height:50px"/>
+<!-- 
+<view class="button">
+<view class="button_text2">?</view>
+<switch class="switch" bindchange="switchChange"/>
+</view> -->
+
+<!-- pages/settings/settings.wxml
+<text style="font-family:SAS;height:100px">pages/settings/settings.wxml</text>
+<button type="English" bindtap="English" style="font-family:SAS;height:100px; width:500px;"> English </button>
+<button type="Chinese" size="default" bindtap="Chinese"> Chinese </button>
+<button type="Korean" size="default" bindtap="Korean"> Korean </button>
+<view style="font-family:SAS;height:100px; width:100%;font-size:15px;background:white;"> ENGLISH </view> -->

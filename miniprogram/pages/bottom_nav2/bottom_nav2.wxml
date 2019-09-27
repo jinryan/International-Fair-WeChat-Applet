@@ -1,0 +1,135 @@
+<!-- <button open-type="getUserInfo" lang="en" bindtap="clout" bindgetuserinfo="onGotUserInfo">Push Eaglebucks</button>
+
+<button bindtap="gucci">Pull Eaglebucks</button> -->
+<view>
+<image
+src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+class = "header_alt">
+</image>
+
+<view class = "filler"></view>
+
+</view>
+  <view style ="height:{{height/40+nav_height*0.8-40}}px"></view>
+  <!-- Ticket Sprites -->
+  <view wx:if="{{myEaglebuck==0}}">
+  <image
+  src="https://bluepiglet30.github.io/IFfilehost/Ticket1.png" class="ticketSprite" style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+  </view>
+
+  <view wx:elif="{{myEaglebuck<=10}}">
+  <image
+  src="https://bluepiglet30.github.io/IFfilehost/Ticket2.png" class="ticketSprite" style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+  </view>
+
+  <view wx:elif="{{myEaglebuck<=100}}">
+  <image
+  src="https://bluepiglet30.github.io/IFfilehost/Ticket3.png" class="ticketSprite"style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+  </view>
+
+  <view wx:elif="{{myEaglebuck<=499}}">
+  <image
+  src="https://bluepiglet30.github.io/IFfilehost/Ticket4.png" class="ticketSprite"style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+  </view>
+
+  <view wx:else>
+  <image src="https://bluepiglet30.github.io/IFfilehost/Ticket5.png" class="ticketSprite"style="height: {{height/2.2}}px; width: {{height/2.2}}px;"></image>
+  </view>
+
+  <view wx:if="{{myEaglebuck>499}}">
+  <view style ="height:10px"></view>
+  <view style = "position: relative; width: 700rpx; left: 25rpx; text-align: center; font-family: COI">
+    <view wx:if="{{languagePreference==0}}">
+        Thats a lot of tickets you got there! Enjoy this special piece of art from one of the developers.
+      </view>
+      <view wx:elif="{{languagePreference==1}}">
+        呀呀呀 好多鹰镑哦！亲，开发商送你一副小画画～～～
+      </view>
+      <view wx:else>
+        티켓 구입
+      </view>
+  </view>
+</view>
+
+  <view style = "height:{{height/20}}px"></view>
+
+  <view class = "borderBox" style = "margin-top: -10px">
+    <view style = "height:50rpx"></view>
+    <!-- <view 
+        id = "MyEagleBucks" 
+        class= "eaglebuck_display"
+        style="text-align: center; font-family:SAS; font-size:auto">
+    {{myEaglebuck}}
+    </view> -->
+    <view
+        class= "eaglebuck_display"
+        style="text-align: center; font-family:CBO; margin-top: -20px; font-size:auto">
+        <view wx:if="{{languagePreference==0}}">
+        {{myEaglebuck}} Eaglebucks
+      </view>
+      <view wx:elif="{{languagePreference==1}}">
+        {{myEaglebuck}} 鹰镑
+      </view>
+      <view wx:else>
+        {{myEaglebuck}} kimchi
+      </view>
+    </view>
+  </view>
+
+  <view style = "height:{{height/10}}px" wx:if="{{myEaglebuck<=499}}"></view>
+    <view style = "height:{{height/15}}px" wx:if="{{myEaglebuck>499}}"></view>
+  <!-- 
+  <view wx:if="{{languagePreference == 0}}">  You have: {{myEaglebuck}} Eaglebucks
+  </view>
+  <view wx:elif="{{languagePreference == 1}}">你有: {{myEaglebuck}} Eaglebucks</view>
+  <view wx:elif="{{languagePreference == 2}}">korean</view> -->
+<div class="row" style = "position: relative; left: 140rpx; margin-top: -30px">
+  <div class="column">
+  <view bindtap= "spend_tickets" class="tickets">
+    <image src="/images/QR.png" style="left: 5rpx; width:95%; height: 100%;">
+    </image>
+    <view style= "height:0rpx"></view>
+    <view style= "color: black; font-size:14px; text-align: center; font-family:CO">
+      <view wx:if="{{languagePreference==0}}">
+        Scan
+      </view>
+      <view wx:elif="{{languagePreference==1}}">
+        扫描
+      </view>
+      <view wx:else>
+        전자 티켓
+      </view>
+    </view>
+    </view>
+  </div>
+  <div class="column">
+    <view bindtap= "buy_tickets" class="tickets" style = "margin-top: 0px">
+    <image src="/images/Buy.png" style="width:100%; height: 100%;">
+    </image>
+    <view style= "height:0rpx"></view>
+    <view style= "color: black; font-size:14px; text-align: center; font-family:CO">
+      <view wx:if="{{languagePreference==0}}">
+        Buy
+      </view>
+      <view wx:elif="{{languagePreference==1}}">
+        购买
+      </view>
+      <view wx:else>
+        QR 스캔
+      </view>
+    
+    </view>
+    </view>
+  </div>
+</div>
+
+  <view bindtap= "club_info" hidden="{{boothHidden || boothUser==''}}">
+  <image src="/images/Plus.png" class="club">
+  </image>
+  </view>
+
+
+<include src="/pages/master_nav/master_nav.wxml"/>
+
+
+<!-- <text style="font-size: 60px; color:blue;"> The qr code says: {{qrData}}</text> -->

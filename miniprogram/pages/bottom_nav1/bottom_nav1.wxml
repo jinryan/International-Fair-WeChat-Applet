@@ -1,0 +1,79 @@
+<!--miniprogram/pages/bottom_nav4/bottom_nav4.wxml-->
+<!-- <text>Page 4</text> -->
+<view>
+<image
+src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+class = "header_alt">
+</image>
+<view
+class = "filler">
+</view>
+
+  <!-- <view
+hidden="{{!map_hidden}}"
+style="background:white;"
+bindtap="hide"
+>
+<text>Dev Team: \n
+Stuart - id give back massage with happy ending \n
+Sam - honestly and unbiasedly very smart and competant \n
+Barron - cant talk to girls \n
+Oliver - mystery boi \n
+Heon - to subvert expectations of coming late, why not just miss every meeting \n
+Emily - wait shes on the team? \n
+Designers: \n
+Jackie - cAmP iS sTReSSfUl \n
+Vicky - ItS FiNALs weEk\n
+Jasmine - come back in 3 years</text>
+</view> -->
+
+<!-- <view class="section"> -->
+  <movable-area style="background: none; width: {{width}}px; height: {{height}}px; top: {{top}}px; left: {{left}}px;" scale-area="false">
+    <movable-view class="map_view" x="{{-posX}}" y="{{-posY}}" direction="all" bindchange="onChange" bindscale="onScale" scale scale-value="1" scale-min="0.5" scale-max="6" bindtap="coords" out-of-bounds="true"
+    friction="100"
+    damping="50">
+    <image 
+          src="/images/Puxi.png" 
+          style='height:500px; width:500px; box-shadow: 0px 0px 5px #d3d3d3;'>
+      </image>   
+    </movable-view>
+  </movable-area>
+
+
+<!-- <view style="position:fixed; height:600rpx; width:600rpx; top:300rpx; left:75rpx" hidden="{{popup_hidden}}">
+        <button bindtap="close_popup" class="button">
+        <image src="/images/x.png" style="position: absolute; height:40rpx; width: 40rpx;top:10rpx;right:5rpx"></image>
+        </button> 
+
+        <canvas canvas-id="popupCanvas" class="popup" bindtap="coords">
+        <image src="/images/popup.png" style="height:600rpx; width:600rpx;position:fixed;"></image>
+        <view style="position:fixed; left: 130rpx; top: 335rpx;width:500rpx;text-align:center;">
+        <text style="z-index:1;font-family:CO; font-size: 25px;">{{popup_name}}</text>
+        </view>
+        <view style="position:fixed; left: 130rpx; top: 480rpx;width:500rpx;">
+        <text style="z-index:1;font-family:CO; font-size: 15px;">{{popup_description}}</text>
+        </view>
+    </canvas>
+    </view> -->
+
+<view hidden="{{popup_hidden}}">
+  <view class = "popup">
+    <view bindtap="close_popup" class="button">
+    <image src="/images/x.png" style="position: absolute; height:40rpx; width: 40rpx;top:10rpx;right:5rpx"></image>
+    </view> 
+    <view class = "popup_content">
+      <view style="font-family:CBO; font-size; 16; color: rgb(135,0,0)">
+        {{popup_name}}
+      </view>
+      <view style="font-family:CO; font-size; 13;">
+        {{popup_description}}
+      </view>
+    </view>
+  </view>
+</view>
+
+</view>
+
+
+
+<include src="/pages/master_nav/master_nav.wxml"/>

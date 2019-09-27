@@ -1,0 +1,175 @@
+<!-- <view
+class = "header">
+<image 
+    src="/images/SAS Logo.png"
+    class="logo">
+</image>
+
+<CircularStdBlack
+class = "header_text">
+INTERNATIONAL FAIR 2019
+</CircularStdBlack>
+
+</view> -->
+<!-- <view style="height:{{screenH-230}}px;"> -->
+<view wx:if="{{true}}">
+  <view hidden="{{show_tutorial}}">
+  <view>
+  <image
+  src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+  class = "header_alt">
+  </image>
+  </view>
+  <view
+  class = "filler">
+  </view>
+
+  <view bindtap= "toSettings">
+  <image src="/images/Settings.png" class="settings">
+  <button type="settings" size="mini" bindtap="settings"> settings </button>
+  </image>
+  </view>
+    <!-- <canvas
+    style="width: {{screenW}}px; height: {{screenW/1.5}}px;" canvas-id="map_preview"> -->
+    <!-- <image 
+        src="/images/Puxi.png" 
+        style="width: 1000px; height: 1000px; position:absolute; clip:rect({{cropT}}px,auto,auto,{{cropL}}px); top: -{{cropT}}px; left: -{{cropL}}px">
+    </image> -->
+    <!-- <canvas style="width:10px; height:10px; left:{{screenW/2-5}}px; top: {{screenW/3-5}}px; background:blue;">
+    
+    </canvas> -->
+    <view style = "position:absolute; height: 400rpx; width: 100%; z-index: 15" bindtap="bottom_nav1">
+    </view>
+    
+    <map
+          id="myMap"
+          style="width: 100%; height:400rpx; position: relative; box-shadow: 0px 0px 5px #d3d3d3;"
+          latitude="{{latitude}}"
+          longitude="{{longitude}}"
+          markers="{{markers}}"
+          scale="17"
+          show-location="true"
+          enable-zoom="{{asdfasdf}}"
+          enable-scroll="{{asdfasdf}}"
+          enable-rotate="{{asdfasdf}}">
+      </map>
+
+      <!-- <button bindtap="moveToLocation" type="primary" hidden = "True">移动位置</button> -->
+
+  <view class = "center" style="position: relative; z-index:3; background: white; top: 20rpx; height: 180px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
+      <view style="position:absolute; left:20rpx; top:35rpx; font-family:CB; font-size:20px; z-index: 5">
+        <view wx:if="{{languagePreference==0}}">
+          BALANCE: {{myEaglebuck}} EAGLE BUCKS
+        </view>
+        <view wx:elif="{{languagePreference==1}}">
+          余额: {{myEaglebuck}} 鹰镑
+        </view>
+        <view wx:else>
+          잔고: {{myEaglebuck}} 전자 티켓
+        </view>
+        </view>
+      <view style="position:absolute; left:20rpx; top:115rpx; width: 60%;font-family: CO; font-size:13px; z-index: 5">
+        <view wx:if="{{languagePreference==0}}">
+          Eagle Bucks are the currency of the
+          SAS PX Eagles. Use it to play games,
+          buy food and so much more!！
+        </view>
+        <view wx:elif="{{languagePreference==1}}">
+          鹰镑是SAS PX Eagles的货币。
+          用它来玩游戏，买食物等等！
+        </view>
+        <view wx:else>
+          SAS 전자 티켓은 SAS PX Eagles의 
+          통화입니다. 그것을 사용하여 게임을하고
+          음식을 구입하는 등 다양한 것들을
+          체험하세요!
+        </view>
+      </view>
+      <view bindtap = "buy_tickets" style = "position: absolute; left: 5px; bottom:10px; width: 120px; height: 30px; background:white; border-radius: 15px; text-size: 15px; text-align: center; color: #c4000a; font-family: COI; border: 1px solid rgba(220, 0, 0, 1)">
+          <view style="height:4px"></view>
+          Buy Tickets
+      </view>
+
+      <view style = "position: relative; top: 5px; left:430rpx">
+      <image class = "ticketBG" src = "/images/TicketBg.png"/>
+      </view>
+  </view>
+  
+  <view style="height:40rpx"></view>
+
+  <!-- <view class = "center" style="z-index:3; background: white; top: 20rpx; height: 70px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
+    <image src="/images/ScheduleIcon.png" class = "scheduleIcon" style = "top: 10px; left: 2rpx"/>
+  </view> -->
+<!--   
+  <view style="height:10rpx"></view> -->
+
+  <view class="scheduleView" style="box-shadow: 0px 0px 5px #d3d3d3;">
+    <swiper
+        indicator-dots="{{true}}" autoplay="{{true}}" circular="{{false}}" vertical="{{false}}"
+        interval="{{5000}}" duration="{{500}}" previous-margin="{{0}}px" next-margin="{{0}}px">
+        <block wx:for="{{nextEvent}}" wx:key="{{_id}}">
+          <swiper-item>
+            <view class="scheduleInfo">
+            <view style="height:1px"/>
+        <view style = "margin-top: 10px; margin-left:20rpx; margin-right:20rpx" >
+          <view style="height:5px"/>
+          <view style= "color: #392323; font-size:20px; font-family: CB">
+            Upcoming Event at {{item.showtime}} : {{item._id}}
+          </view>
+          <view style= "color: #392323; font-family: CO">
+            {{item.location}}
+          </view>
+          <view style= "color: #392323; font-size:14px; font-family: CO">
+            {{item.description}}
+          </view>
+      </view>
+      <view style="height:10px"/>
+      <view bindtap = "bottom_nav4" class = "redButton">
+          <view style="height:4px"></view>
+          Today's Events
+      </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class = "center" style="position: relative; z-index:3; top: 10px; background: white; height: 120px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
+      <view class = "typeOverlay">
+        <image style = "width: 100px; height:100px;" src = "/images/alert.png"/>
+      </view>
+      <view style="position:absolute; left:20rpx; top:35rpx; font-family:CB; font-size:20px; z-index: 5">
+        Announcement!
+      </view>
+      <view class = "center" style="position:absolute; left: 10px; width:500rpx; top:115rpx; font-family: CO; font-size:13px; z-index: 5">
+        {{announcementMessage}}
+      </view>
+    </view>
+  <view style="height:100px"/>
+  <include src="/pages/master_nav/master_nav.wxml"/>
+
+  </view>
+
+  <!--TUTORIAL PAGEEEEEEEEEE-->
+  <view class="tutorialSlide" wx:if="{{show_tutorial}}">
+
+  <swiper
+        indicator-dots="{{true}}" autoplay="{{false}}" circular="{{false}}" vertical="{{false}}"
+       previous-margin="{{0}}px" next-margin="{{0}}px" class="tutorialSlide">
+        <block wx:for="{{tutorialSlides}}" wx:key="{{id}}">
+          <swiper-item>
+
+          <view class="tutorialSlide" wx:if="{{item.color==4206963}}">
+          <button class="finishb" bindtap="tutorial">Finish</button>
+          </view>
+
+            <view class="tutorialSlide" style="background-color: {{item.color}}" wx:else>
+                      <button class="finish" bindtap="tutorial">Skip Tutorial</button>
+          </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    
+
+  </view>
+</view>

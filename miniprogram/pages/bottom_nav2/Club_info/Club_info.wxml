@@ -1,0 +1,86 @@
+
+
+<image
+src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+class = "header_alt">
+</image>
+  <view class = "whiteContainer" style="height: 100px;">
+        <view class= "titleText" style="font-family:CO;">
+        {{boothName}}
+      </view>
+      <view class="bodyText" style="font-family:CB;">
+        has {{boothEagleBucks}} eaglebucks
+        </view>
+  </view>
+  <view class="whiteContainer" style="height: 50px;">
+    <view class="tr">
+      <view class="th" style="font-family:CO;">Transfered#</view>
+      <view class="th" style="font-family:CO;">Time</view>
+      <view class="th" style="font-family:CO;">Username</view>
+    </view>
+  </view>
+  <block wx:for="{{clubTransaction}}" wx:key="{{_id}}">
+    <view class="whiteContainer" style="height: 50px">
+      <view class="tr">
+        <view class="td" style="font-family:CO;">{{item.eaglebuck}}</view>
+        <view class="td" style="font-family:CO;">{{item.time}}</view>
+        <view class="td" style="font-family:CO;">{{item.username}}</view>
+      </view>
+    </view>
+  </block>
+
+<view class="whiteContainer" style="font-family:CO;">
+  <button bindtap='pullMore'> Load More Transactions </button>
+</view>
+
+<view class="whiteContainer">
+  <form bindsubmit='refund'>
+    <input name="number" placeholder="number">
+    </input>
+    <button form-type='submit' style="font-family:CO;">
+      Submit # for refund
+    </button>
+  </form>
+</view>
+
+<view class="whiteContainer" style="font-family:CO;">
+  <button bindtap='reload'> Reload </button>
+</view>
+
+<view class="whiteContainer" style="font-family:CO;">
+  <button bindtap='logout'> Logout </button>
+</view>
+
+<!-- ----------------------------------- -->
+<!-- <view>{{boothName}} has {{boothEagleBucks}} eaglebucks</view>
+  <view class="tr bg-w">
+    <view class="th">BoothName</view>
+    <view class="th ">Transfered #</view>
+    <view class="th ">time </view>
+    <view class="th ">User </view>
+  </view>
+  <block wx:for="{{clubTransaction}}" wx:key="{{_id}}">
+    <view class="tr bg-g" >
+      <view class="td">{{item.boothName}}</view>
+      <view class="td">{{item.eaglebuck}}</view>
+      <view class="td">{{item.time}}</view>
+      <view class="td">{{item.username}}</view>
+    </view>
+  </block>
+
+
+
+  <form 
+    bindsubmit='refund'>
+  <input 
+      name="number" 
+      placeholder="number">
+  </input>
+  <button 
+      form-type='submit'>
+    Submit
+  </button>
+</form>
+
+
+<button bindtap='reload'> reload </button> -->

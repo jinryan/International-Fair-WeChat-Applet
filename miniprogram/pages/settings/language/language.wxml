@@ -1,0 +1,41 @@
+<!--miniprogram/pages/language.wxml-->
+<!--pages/settings/settings.wxml-->
+<!-- <view bindtap= "English" class="center" style = "top:70rpx">
+<image src="/images/USFlag.png" mode="aspectFit"> </image>
+</view>
+
+<view bindtap= "Chinese" class="center" style = "top:470rpx">
+<image src="/images/ChinaFlag.png" mode="aspectFit"> </image>
+</view>
+
+<view bindtap= "Korean" class="center" style = "top:870rpx">
+<image src="/images/KoreaFlag.png" mode="aspectFit"> </image>
+</view> -->
+
+<view class = "lang" bindtap="English">
+  <view style="margin-left:10px;">
+    <view style="height:25px"/>
+    English
+  </view>
+  <image src="/images/USFlag.png" class = "typeOverlay"/>
+</view>
+
+<view style="height:15px"/>
+
+<view class = "lang" bindtap="Chinese">
+  <view style="margin-left:10px;">
+    <view style="height:25px"/>
+    中文
+  </view>
+  <image src="/images/ChinaFlag.png" class = "typeOverlay"/>
+</view>
+
+<view style="height:15px"/>
+
+<view class = "lang" bindtap="Korean">
+  <view style="margin-left:10px;">
+    <view style="height:25px"/>
+    한국어
+  </view>
+  <image src="/images/KoreaFlag.png" class = "typeOverlay" style = "top:-5px"/>
+</view>

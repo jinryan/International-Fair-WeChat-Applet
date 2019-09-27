@@ -1,0 +1,106 @@
+page {
+
+}
+
+.header_alt{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  z-index: 10;
+  box-shadow: 0px 0px 5px #808080;
+}
+
+.filler{
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+.filler2{
+  display: block;
+  width: 100%;
+  height: 20rpx;
+}
+
+.eaglebuck_display{
+  display: block;
+  width: 100%;
+  font-size: 30px;
+  color: #d94a31;
+  text-align: center;
+}
+
+
+.spend{
+  width: 75%;
+  height: 150px;
+  vertical-align: middle;
+  line-height: 150px;
+  color: red;
+  border-bottom: 1px solid black;
+}
+
+.test{
+  width: 75%;
+  height: 150px;
+}
+
+.buy{
+  width: 75%;
+  height: 150px;
+  vertical-align: middle;
+  line-height: 150px;
+  color: red;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.ticketSprite{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:0px;
+}
+
+.tickets{
+  height:75px;
+  width:75px;
+  display: block;
+  z-index: 2;
+}
+
+.club{
+  height:30px;
+  width:30px;
+  position: fixed;
+  top:20rpx;
+  left:20rpx;
+  z-index:10;
+}
+
+.column {
+  float: left;
+  width: 40%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  position:relative;
+  content: "";
+  display: table;
+  clear: both;
+  left: 100rpx;
+}
+
+.borderBox{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height:50px;
+  background: white;
+  box-shadow: 0px 0px 5px #d3d3d3
+}

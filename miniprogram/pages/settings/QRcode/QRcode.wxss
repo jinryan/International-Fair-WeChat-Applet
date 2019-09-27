@@ -1,0 +1,8 @@
+/* miniprogram/pages/settings/QRcode/QRcode.wxss */
+.myQR{
+  position: relative;
+  width: 700rpx;
+  height: 700rpx;
+  left: 25rpx;
+  top: 50rpx;
+}

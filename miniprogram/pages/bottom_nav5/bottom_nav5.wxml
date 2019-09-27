@@ -1,0 +1,116 @@
+<view>
+<image
+src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+class = "header_alt">
+</image>
+</view>
+
+<view
+class = "filler">
+</view>
+
+<view class = "center" bindtap="toMenu">
+      <image data-nam="{{'American'}}"  class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/American.png"/>
+      <view class="button_text">American</view>
+      <image src="/images/right_arrow.png" class="right_arrow"></image>
+</view>
+
+<view class = "center" bindtap="toMenu">
+    <image data-nam="{{'European'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/European.png"></image>
+          <view class="button_text">European</view>
+    <image src="/images/right_arrow.png" class="right_arrow"></image>
+</view>
+
+<view class = "center" bindtap="toMenu">
+    <image data-nam="{{'Korean'}}"bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Korean.png"></image>
+          <view class="button_text">Korean</view>
+    <image src="/images/right_arrow.png" class="right_arrow"></image>
+</view>
+
+<view class = "center" bindtap="toMenu">
+    <image data-nam="{{'Chinese'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Chinese.png"></image>
+          <view class="button_text">Chinese</view>
+    <image src="/images/right_arrow.png" class="right_arrow"></image>
+</view>
+
+<view class = "center" bindtap="toMenu">
+    <image data-nam="{{'Indian'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Indian.png"></image>
+          <view class="button_text">Indian</view>
+    <image src="/images/right_arrow.png" class="right_arrow"></image>
+</view>
+
+
+<!-- <div class="row">
+  <div class="column">
+    <image data-nam="{{'American'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/American.png"></image>
+    <image data-nam="{{'European'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/European.png"></image>
+    <image data-nam="{{'Korean'}}"bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Korean.png"></image>
+  </div>
+  <div class="column">
+    <image data-nam="{{'Chinese'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Chinese.png"></image>
+    <image data-nam="{{'Indian'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Indian.png"></image>
+    <image data-nam="{{'Korean'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Korean.png"></image>
+  </div>
+</div> -->
+
+<!-- 
+<div 
+    class="hero-image" 
+    bindtap="menu_1" 
+    style='background-image:url("https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg");'>
+
+  <div 
+      class="hero-text" style="font-family:CB">
+    American
+  </div>
+
+</div>
+
+<div 
+    class="hero-image" 
+    bindtap="menu_2" 
+    style='background-image:url("https://theistanbulinsider.com/wp-content/uploads/2013/12/turkish-food.jpg");'>
+
+  <div 
+      class="hero-text" style="font-family:CB">
+    Turkish
+  </div>
+
+</div>
+
+<div 
+    class="hero-image" 
+    bindtap="menu_3" 
+    style='background-image:url("https://www.hotelgift.com/wp-content/uploads/2019/01/GettyImages-636633542.jpg");'>
+
+  <div 
+      class="hero-text" style="font-family:CB">
+    Korean
+  </div>
+
+</div>
+
+<div 
+    class="hero-image" 
+    bindtap="menu_1" 
+    style='background-image:url("https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg");'>
+
+  <div 
+      class="hero-text" style="font-family:CB">
+    Chinese
+  </div>
+
+</div> -->
+
+<!-- <view class="container">
+  <image src="https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg" class="image">
+  </image>
+  <view>
+  <image src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" class="overlay">
+  </image>
+  </view>
+</view> -->
+
+<!-- ./korean.png -->
+<view style="height:200px"></view>
+<include src="/pages/master_nav/master_nav.wxml"/>

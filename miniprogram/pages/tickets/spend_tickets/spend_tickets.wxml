@@ -1,0 +1,52 @@
+<!-- <include src="/pages/master_nav/master_nav.wxml"/> -->
+<view wx:if="{{scanned}}">
+  <view class="profile_view">
+    <image class="profile_pic" src="{{avatarUrl}}"/>
+  </view>
+  <view style = "width: 100%; text-align: center; font-family:CBO; font-size: 40rpx; height: 40rpx">
+  Sending to booth: {{transferBoothName}}
+  </view>
+
+    <view style = "background: white; width: 100%; top: 380rpx; position: absolute; bottom: 0px; border-top-left-radius: 10px; border-top-right-radius: 10px">
+      <view style = "font-family:CBO; margin-top: 20px; margin-left: 20px">
+        Transfer amount
+      </view>
+      <image style = "margin-left: 20px; margin-top: 10px; width: 40px; height: 40px" src = "/images/ticket.png"></image>
+      <form bindsubmit='update'>
+        <view style = "height:15px"></view>
+        <input style = "margin-left: 75px; margin-top: -67px; height: 60px; font-size: 40px" name="number" type="number" placeholder="0"></input>
+        <view style = "height:40px"></view>
+      <view style = "position: absolute; top: 200px" hidden="{{!msg_show}}">You don't have enough tickets!</view>
+      <view style = "position: absolute; top: 200px" hidden="{{!msg_show1}}">Please enter a valid number of tickets</view>
+      <view class = "center" style = "margin-top: -42px; width: 90%; height:1px; background: #b5b5b5"></view>
+      <view style = "height:10px"></view>
+      <button style = "width: 60%; background:#08c060; border-radius: 5px;" form-type='submit'>Submit</button>
+      </form>
+    </view>
+</view>
+
+<view wx:if="{{transfering}}">
+  <view class="profile_view">
+    <image class="profile_pic" src="{{avatarUrl}}"/>
+  </view>
+  <view style = "width: 100%; text-align: center; font-family:CBO; font-size: 40rpx; height: 40rpx">
+  Sending to booth: {{transferBoothName}}
+  </view>
+
+    <view style = "background: white; width: 100%; height:80%; position: absolute; bottom: 0px; border-top-left-radius: 10px; border-top-right-radius: 10px">
+      <view style = "font-family:CBO; margin-top: 20px; margin-left: 20px">
+        Transfer amount
+      </view>
+      <image style = "margin-left: 20px; margin-top: 10px; width: 40px; height: 40px" src = "/images/ticket.png"></image>
+      <form bindsubmit='transfer'>
+        <view style = "height:15px"></view>
+        <input style = "margin-left: 75px; margin-top: -67px; height: 60px; font-size: 40px" name="number" type="number" placeholder="0"></input>
+        <view style = "height:40px"></view>
+      <view style = "position: absolute; top: 200px" hidden="{{!msg_show}}">You don't have enough tickets!</view>
+      <view style = "position: absolute; top: 200px" hidden="{{!msg_show1}}">Please enter a valid number of tickets</view>
+      <view class = "center" style = "margin-top: -42px; width: 90%; height:1px; background: #b5b5b5"></view>
+      <view style = "height:10px"></view>
+      <button style = "width: 60%; background:#08c060; border-radius: 5px;" form-type='submit'>Submit</button>
+      </form>
+    </view>
+</view>

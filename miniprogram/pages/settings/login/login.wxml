@@ -1,0 +1,10 @@
+<view class="entry_field">
+<input placeholder="Username" bindinput="bindUserInput" auto-focus value="{{''}}"/>
+</view>
+<view class="entry_field">
+<input placeholder="Password" bindinput="bindPassInput" auto-focus password="{{true}}" value="{{''}}"/>
+</view>
+
+<button bindtap="submit">Login</button>
+
+<view hidden="{{errorHidden}}">incorrect username or password</view>

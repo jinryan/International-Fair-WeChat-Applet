@@ -1,0 +1,15 @@
+<!--miniprogram/pages/menu_1/menu_1.wxml-->
+<text id="foodCategory">{{name}}</text>
+<!-- <text id="loadImages" wx:if="{{loadImages==1}}">Loading Images...</text> -->
+
+
+<swiper
+        indicator-dots="{{true}}" autoplay="{{true}}" circular="{{false}}" vertical="{{false}}"interval="{{5000}}" duration="{{500}}"
+       previous-margin="{{0}}px" next-margin="{{0}}px" class="swiperView">
+        <view wx:for="{{imageNames}}">
+          <swiper-item>
+          <image class="galleryPhoto" src="{{item}}"></image>
+          </swiper-item>
+        </view>
+      </swiper>
+<!-- <include src="/pages/master_nav/master_nav.wxml"/> -->

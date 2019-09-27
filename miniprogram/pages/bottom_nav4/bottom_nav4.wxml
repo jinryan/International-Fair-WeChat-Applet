@@ -1,0 +1,92 @@
+<view hidden = "{{barron}}">
+  <view>
+    <image
+    src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+    class = "header_alt">
+    </image>
+    <view class = "filler"> </view> 
+  </view>
+
+  <view>
+
+
+  <view wx:for="{{scheduleArray}}" wx:for-index="i">
+    <view>
+      <view wx:if = "{{scheduleArray[i].type == 0}}" class = "typeOverlay">
+        <image style = "width: 100px; height:100px;" src = "/images/perf.png"/>
+      </view>
+
+      <view wx:if = "{{scheduleArray[i].type == 1}}" class = "typeOverlay">
+        <image style = "width: 100px; height:100px;" src = "/images/raffle.png"/>
+      </view>
+      <view style = "z-index:5">
+        <view class = "scheduleTime" style = "font-family:COI">
+      
+          <view wx:if = "{{time-addTime > scheduleArray[i].time}}" class = "circle" style = "background-color: grey"/>
+          <view wx:elif = "{{time+addTime < scheduleArray[i].time}}"    class = "circle"/>
+          <view wx:else class = "circle" style = "background-color: blue"/>
+
+          <!-- <view style="height:46rpx"/>
+            <text style= "color: black;">
+            {{scheduleArray[i].showtime}}
+            </text> -->
+          </view>
+      
+          <view class = "scheduleInfo">
+            <view wx:if = "{{time-addTime > scheduleArray[i].time}}" style = "color: rgb(120,120,120);">
+              <view style = "margin-top:26rpx; margin-left:20rpx;     font-family:CO" >
+                <view style= "font-size:20px">
+                {{scheduleArray[i].showtime}}: {{scheduleArray[i]._id}}
+                </view>
+                <view style = "height: 5px;"/>
+                <view>
+                {{scheduleArray[i].location}}
+                </view>
+                <view style = "height: 5px;"/>
+                <view style= "font-size:14px">
+                {{scheduleArray[i].description}}
+                </view>
+
+              </view>
+            </view>
+            
+            <view wx:else>
+              <view style = "margin-top:26rpx; margin-left:20rpx;     font-family:CO" >
+                <view style= "font-size:20px">
+                {{scheduleArray[i].showtime}}: {{scheduleArray[i]._id}}
+                </view>
+                <view style = "height: 5px;"/>
+                <view>
+                {{scheduleArray[i].location}}
+                </view>
+                <view style = "height: 5px;"/>
+                <view style= "font-size:14px">
+                {{scheduleArray[i].description}}
+                </view>
+
+              </view>
+            </view>
+          </view>
+    
+          <view style="height:255rpx"/>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style="height:140px"/>
+  </view>
+
+<view hidden = "{{!barron}}">
+  <view>
+    <image
+    src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+    class = "header_alt">
+    </image>
+    <view class = "filler"> </view> 
+  </view>
+  <image class = "barron" src = "https://bluepiglet30.github.io/IFfilehost/BarronEgg.jpeg">
+  </image>
+  <button style = "background: grey" bindtap="bye">Bye</button>
+</view>
+
+<include src="/pages/master_nav/master_nav.wxml"/>

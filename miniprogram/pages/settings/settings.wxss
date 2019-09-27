@@ -1,0 +1,98 @@
+.center {
+  display: block;
+  width: 90%;
+  position: fixed;
+  right:30rpx;
+}
+
+.button {
+  /* left: 5%; */
+  background: white;
+  box-shadow: 0px 0px 5px #d3d3d3;
+  width: 100%;
+  height: 100rpx;
+  text-align: left;
+  /* border-bottom: 1px solid #C94731; */
+  margin-left: none;
+  padding: 0px;
+  border-radius: 0px;
+  margin-top: 10px;
+  /* border-width: 5px;
+  border-color: black;
+  background-color: white; */
+}
+
+.button2 {
+  /* left: 5%; */
+  background: white;
+  width: 100%;
+  height: 100rpx;
+  text-align: left;
+  border-top: 1px solid #d3d3d3;
+  margin-left: none;
+  padding: 0px;
+  border-radius: 0px;
+  /* border-width: 5px;
+  border-color: black;
+  background-color: white; */
+}
+
+.button_text{
+  position:relative;
+  top: 2px;
+  left:120rpx;
+  height: 75rpx;
+  font-size:18px;
+  font-family: CO;
+}
+
+.button_text2{
+  position:relative;
+  top: 28rpx;
+  left:120rpx;
+  height: 75rpx;
+  font-size:18px;
+  font-family: CO;
+
+}
+
+.right_arrow{
+  position: relative;
+  left: 600rpx;
+  top: -74rpx;
+  width:40rpx;
+  height: 40rpx;
+}
+
+.settings_icon{
+  position: relative;
+  top: -60rpx;
+  left: 15rpx;
+  width:70rpx;
+  height:70rpx;
+}
+
+.switch{
+  position:relative;
+  left: 548rpx;
+  top: -83rpx;
+}
+.profile_pic{
+  position:relative;
+  height: 250rpx;
+  width: 250rpx;
+  left: 250rpx;
+  top: 50rpx;
+  border-radius: 50%;
+}
+.profile_view{
+  height:350rpx;
+}
+
+.user_text{
+  background: white;
+  width: 100%;
+  box-shadow: 0px 0px 5px #d3d3d3;
+  height: 50px;
+  font-family: CO;
+}

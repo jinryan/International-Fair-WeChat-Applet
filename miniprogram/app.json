@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/bottom_nav5/bottom_nav5",
+    "pages/bottom_nav1/bottom_nav1",
+    "pages/bottom_nav2/bottom_nav2",
+    "pages/bottom_nav4/bottom_nav4",
+    "pages/bottom_nav2/Club_info/Club_info",
+    "pages/master_nav/master_nav",
+    "pages/tickets/buy_tickets/buy_tickets",
+    "pages/tickets/spend_tickets/spend_tickets",
+    "pages/tickets/confirmation/confirmation",
+    "pages/tickets/transfer/transfer",
+    "pages/menu_1/menu_1",
+    "pages/settings/settings",
+    "pages/settings/feedback/feedback",
+    "pages/Error/Error"
+  ],
+
+  "permission": {
+    "scope.userLocation": {
+      "desc": "Enable location services to use Map functions"
+    },
+    "scope.snsapi_userinfo": {
+      "desc": "Allow access to public user info. Failure to accept this might result in loss of e-tickets or failure to purchase!"
+    }
+  },
+  
+  "window": {
+    "backgroundColor": "#000000",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "IF Digital Platform",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}

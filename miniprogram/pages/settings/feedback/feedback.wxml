@@ -1,0 +1,49 @@
+<view>
+  <image
+  src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+  class = "header_alt">
+  </image>
+  </view>
+  <view
+  class = "filler">
+</view>
+
+<view wx:if="{{!sent}}">
+<image class = "center" style="width: 375rpx; height: 558rpx" src = "https://bluepiglet30.github.io/IFfilehost/baby.png"/>
+
+<view class = "container" style="position: relative; font-size: 18; font-family: CO; bottom: 0px;">
+<view style = "height:10px"></view>
+<view class = "center" style="text-align: center">
+Your feedback is valuable, please leave any comments or concerns!
+</view>
+<!-- <view style="height: 80px"/> -->
+<view style = "height:15px"></view>
+
+<view class="feedbackArea" style = "height: 140px; font-size: 13px; display: block; margin-left: auto; margin-right: auto; width: 90%; border: 1px solid black; border-radius: 10px;">
+<textarea bindinput='storeFeedback' maxlength="-1" style = "height: 120px; font-size: 13px; display: block; margin-left: auto; margin-right: auto; width: 94%; position: relative; top: 10px;" name="number" placeholder="Feedback">
+        <!-- <textarea style = "height: 120px; font-size: 13px; display: block; margin-left: auto; margin-right: auto; width: 94%; position: relative; top: 10px;" name="number" placeholder="Feedback"/> -->
+        <!-- </view> -->
+
+
+      </textarea>
+
+      </view>
+            <view style = "height:15px"></view>
+            <button class="submitButton" bindtap="submitFeedback">Submit</button>
+</view>
+</view>
+<!-- 
+<view style="z-index:5" class = "center">
+
+</view> -->
+
+<view wx:if="{{sent}}">
+<view class = "container" style="font-family: CO; text-align: center; font-size: 15px">
+<view style="height:10px;"/>
+<view class = "center">
+Your feedback has been noted. Thank you and we hope you had a great experience using the IF Digital Platform.
+</view>
+</view>
+<view style="height:10px;"/>
+<button class="submitButton"bindtap='home'>Home</button>
+</view>

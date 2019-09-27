@@ -1,0 +1,567 @@
+/**index.wxss**/
+
+page {
+  background: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.userinfo, .uploader, .tunnel {
+  margin-top: 40rpx;
+  height: 140rpx;
+  width: 100%;
+  background:#f6f6f6;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+.settings{
+  width:50rpx;
+  height:50rpx;
+  top: 26rpx;
+  right:20rpx;
+  position:fixed;
+  z-index: 6
+}
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
+}
+
+.userinfo-avatar:after {
+  border: none;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  color: #007aff;
+  background-color: white;
+  background-size: cover;
+}
+
+.userinfo-nickname::after {
+  border: none;
+}
+
+.uploader, .tunnel {
+  height: auto;
+  padding: 0 0 0 40rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.uploader-text, .tunnel-text {
+  width: 100%;
+  line-height: 52px;
+  font-size: 34rpx;
+  color: #007aff;
+}
+
+.uploader-container {
+  width: 100%;
+  height: 400rpx;
+  padding: 20rpx 20rpx 20rpx 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: blue; 
+}
+
+.uploader-image {
+  width: 100%;
+  height: 360rpx;
+}
+
+.tunnel {
+  padding: 0 0 0 40rpx;
+}
+
+.tunnel-text {
+  position: relative;
+  color: #222;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tunnel-text:first-child {
+  border-top: none;
+}
+
+.tunnel-switch {
+  position: absolute;
+  right: 20rpx;
+  top: -2rpx;
+}
+
+.disable {
+  color: #888;
+}
+
+.service {
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: linear-gradient(#007aff, #0063ce);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  transition: all 300ms ease;
+}
+
+.service-button {
+  position: absolute;
+  top: 40rpx;
+}
+
+.service:active {
+  box-shadow: none;
+}
+
+.request-text {
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  word-break: break-all;
+}
+
+.bottom_nav1 {
+  position: absolute;
+  background-color: blue;
+}
+
+.body {
+  background-color: blue;
+}
+
+/* .navbar {
+  overflow: hidden;
+  background-color: #f6f6f6;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar button {
+  float: left;
+  display: block;
+  color: #f6f6f6;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  width: 20%;
+}
+
+.navbar button:hover {
+  background: #f6f6f6;
+  color: black;
+}
+
+.navbar button.active {
+  background-color: #4CAF50;
+  color: white;
+} */
+
+.info_box {
+  background-color: #4CAF50;
+  margin: 10px;
+}
+
+.info_image {
+  width: 200px;
+  height: 200px;
+}
+
+.collapsible {
+  background-color: none;
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  height: 80px;
+}
+
+/* .active, .collapsible:hover {
+  background-color: #555;
+} */
+/* 
+.logo{
+  margin-left: 30%; 
+  how do you make this centered for all devices?
+  width: 150px;
+  height: 18px;
+} */
+
+.content {
+  padding: 0 18px;
+  display: none;
+  background-color: #f1f1f1;
+}
+.map-info{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.map-canvas {
+  width: 100%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* .nav_icon{
+  width: 40px;
+  height: 40px;
+} */
+
+/* .header{
+  width: 100%;
+  height: 30%;
+  background-color: #D93823;
+
+}
+
+.header_text{
+  color: white;
+  margin: auto;
+  text-align: center;
+} */
+
+.header_alt{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  z-index: 5;
+  box-shadow: 0px 0px 5px #808080;
+}
+
+.filler{
+  display: block;
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 90px;
+}
+
+.ticket_count{
+  display: block;
+  background-color:crimson;
+  width: 75px;
+  height: 100px;
+}
+
+.ticketBG{
+  height:330rpx;
+  width:310rpx;
+  /* opacity: 0.8; */
+}
+
+/* .information{
+  display: block;
+  width: 80%;
+  height: 500px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center;
+} */
+
+/* .inner_text{
+  width: 100%;
+  height: 50%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: absolute;
+} */
+
+.information{
+  position: relative;
+  text-align: center;
+  color: white;
+  top: 20px;
+}
+
+.inner_text{
+  position: absolute;
+  bottom: 0px;
+  background-color: white;
+  color: black;
+  width: 95%;
+  height: 250rpx;
+  left: 2.5%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.photo{
+  border-radius: 10px;
+  width: 95%;
+  height: 500rpx;
+}
+
+.rounded{
+  border-radius: 10px;
+}
+
+.column {
+  float: left;
+  width: 70%;
+}
+.column2 {
+  float: left;
+  width: 30%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Clear floats after the columns */
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.scheduleInfo{
+  width: 100%;
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+  height: 180px;
+  background-color: white; 
+  box-shadow: 0px 0px 5px #d3d3d3;
+}
+.redButton{
+position: inline; margin-left: 5px; width: 120px; height: 30px; background:white; border-radius: 15px; text-align: center; color: #c4000a; font-family: COI; border: 1px solid rgba(220, 0, 0, 1)
+}
+.tutorial_text{
+  display: block;
+  border-radius: 10px;
+  width: 80%;
+  height: 200rpx;
+  margin-top:auto;
+  margin-bottom:auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  text-align: center;
+}
+
+.tutorial_text{
+  display: block;
+  border-radius: 10px;
+  width: 80%;
+  height: 200rpx;
+  margin-top:auto;
+  margin-bottom:auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  text-align: center;
+}
+.tutorialSlide{
+  position: absolute;
+  width: 100%;
+  height:100%;
+}
+
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  display: block;
+  max-width: 1000px;
+  
+  position: relative;
+  margin: 30 auto;
+  background-color: green;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 25rpx;
+  width: 25rpx;
+  margin: 0 3rpx;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dotDark {
+  cursor: pointer;
+  height: 25rpx;
+  width: 25rpx;
+  margin: 0 3rpx;
+  background-color: #444444;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.dotHolder {
+  position: relative;
+  height: 20px;
+  overflow: auto;
+  bottom: 23px;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.finishb {
+
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  width: 50%;
+  margin-top: 20px;
+  font-family: CO;
+  font-size: 16px;
+  padding: 5px 0px;
+  background-color: #4CAF50;
+}
+
+.dots {
+  margin-top: 10px;
+}
+
+.darkened {
+  background-color: black;
+}
+
+.scheduleIcon{
+  width: 600rpx;
+  height: 99rpx;
+  position: relative;
+  left:-15rpx;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.scrollMenu {
+  overflow: auto;
+  white-space: nowrap;
+  height: 250px;
+}
+
+.scrollStuff {
+  display: inline-block;
+  height: 100px;
+  text-align: left;
+  margin-left: 0;
+  margin-right: 14px;
+  text-decoration: none;
+}
+
+.scheduleSlide {
+background-color: red; 
+width: 80%; 
+margin: 0 auto; 
+height: 100%;
+}
+
+.scheduleView {
+  /* height: 200px; */
+  width: 100%;
+}
+
+.typeOverlay{
+  position:absolute;
+  z-index: 1;
+  opacity: 0.8;
+  left: 530rpx;
+  margin-top: 10px;
+}
