@@ -13,28 +13,25 @@
 </view> -->
 
 <view class = "lang" bindtap="English">
-  <view style="margin-left:10px;">
-    <view style="height:25px"/>
+    <view class="button_text">
     English
   </view>
   <image src="/images/USFlag.png" class = "typeOverlay"/>
 </view>
 
-<view style="height:15px"/>
+<view style="height:10px"/>
 
 <view class = "lang" bindtap="Chinese">
-  <view style="margin-left:10px;">
-    <view style="height:25px"/>
+    <view class="button_text">
     中文
   </view>
   <image src="/images/ChinaFlag.png" class = "typeOverlay"/>
 </view>
 
-<view style="height:15px"/>
+<view style="height:10px"/>
 
 <view class = "lang" bindtap="Korean">
-  <view style="margin-left:10px;">
-    <view style="height:25px"/>
+    <view class="button_text">
     한국어
   </view>
   <image src="/images/KoreaFlag.png" class = "typeOverlay" style = "top:-5px"/>

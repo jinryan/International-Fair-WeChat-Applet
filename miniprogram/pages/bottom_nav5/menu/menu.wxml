@@ -1,0 +1,22 @@
+<view>
+<image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
+class = "header_alt">
+</image>
+</view>
+
+<view
+class = "filler">
+</view>
+
+<block wx:for="{{menuArray}}" wx:key="{{_id}}" wx:for-index="i">
+  <view class = "center" data-nam="{{i}}" bindtap="toMenu">
+    <view class="imageView">
+      <image class = "foodImg" src="{{item.src}}" mode="aspectFill"/></view>
+      <view class="button_text" style="margin-top: 30rpx">{{item._id}}</view>
+      <image src="/images/right_arrow.png" class="right_arrow"></image>
+</view>
+</block>
+
+<!-- <view style="height:100px"></view> -->
+<!-- <include src="/pages/master_nav/master_nav.wxml"/> -->

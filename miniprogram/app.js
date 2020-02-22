@@ -7,6 +7,7 @@ function generateID() {
 var models = ["iPhone X", "iPhone XR", "iPhone XS Max", "iPhone X Max", "iPhone XS"]
 App({
   globalData: {
+    loggedIn: false,
     boothUser: '',
     boothHidden: true,
     languagePreference: 0,
@@ -36,16 +37,83 @@ App({
     latitude: 0,
     longitude: 0,
     useableHeight: 0,
-    imageNames: [],
+    menuArray: [],
+    pullNum: 5,
+    raffleArray: [],
+    locArray: [],
+    gameArray: [],
+    vendorArray: [],
+    centerX: 0,
+    centerY: 0,
+    pin_hidden: true,
   },
 
   onLaunch: function () {
-    // 展示本地存储能力
-    // page.style.setProperty('--bg-color', '#333333')
-    var maxIndex = 4 // VERY IMPORTANT: EDIT THIS BASED ON HOW MANY IMAGES THERE ARE
-    for (var i = 1; i <= maxIndex; i++) {
-      this.globalData.imageNames.push("https://bluepiglet30.github.io/IFfilehost/" + 'American' + i + ".png")
-    }
+    wx.cloud.init()
+    wx.getUserInfo({
+      success: res => {
+        this.globalData.loggedIn = true
+      }
+    })
+
+    wx.cloud.callFunction({
+      name: "pullstuff",
+      data: {
+        field: "menu"
+      },
+      fail: (res) => {
+        console.log(res)
+      },
+
+      success: (res) => {
+        var menuArray = res.result.data;
+        this.globalData.menuArray = menuArray;
+        console.log(this.globalData.menuArray)
+      },
+    })
+
+    wx.cloud.callFunction({
+      name: "pullstuff",
+      data: {
+        field: "raffle"
+      },
+      fail: (res) => {
+        console.log(res)
+      },
+
+      success: (res) => {
+        var raffleArray = res.result.data;
+        this.globalData.raffleArray = raffleArray;
+        console.log(this.globalData.raffleArray)
+      },
+    })
+
+    wx.cloud.callFunction({
+      name: "pullLocations",
+      fail: (res) => {
+        console.log(res)
+      },
+
+      success: (res) => {
+        var locArray = res.result.data;
+        this.globalData.locArray = locArray;
+        console.log(this.globalData.locArray)
+
+        for (var i = 0; i < locArray.length; i++) {
+          // console.log(locArray[i]['_id'])
+          if (locArray[i]['_id'].substr(0, 1) == "G") {
+            this.globalData.gameArray.push(locArray[i])
+          }
+          else if (locArray[i]['_id'].substr(0, 1) == "V" || locArray[i]['_id'].substr(0, 1) == "S" || locArray[i]['_id'].substr(0, 1) == "A") {
+            this.globalData.vendorArray.push(locArray[i])
+          }
+        }
+        console.log("game:")
+        console.log(this.globalData.gameArray)
+        console.log("vendor:")
+        console.log(this.globalData.vendorArray)
+      },
+    })
 
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -76,6 +144,7 @@ App({
         this.globalData.longitude = res.longitude
       }
     })
+    this.globalData.pullNum = 5;
   },
 
   storage: function () {
@@ -127,52 +196,3 @@ App({
   }
 
 })
-
-// // //LOAD FONTS
-// wx.loadFontFace({
-//   family: 'SAS',
-//   source: 'src("/fonts/SASfontwip.ttf/")',
-//   success: console.log,
-// })
-
-// wx.loadFontFace({
-//   family: 'CB',
-//   source: 'src("/fonts/circular-bold WIP.otf/")',
-//   success: console.log,
-// })
-
-// wx.loadFontFace({
-//   family: 'CBI',
-//   source: 'url("https://bluepiglet30.github.io/IFfilehost/circular-bold-italic WIP.otf")',
-//   success: console.log,
-// })
-
-// wx.loadFontFace({
-//   family: 'COI',
-//   source: 'url("https://bluepiglet30.github.io/IFfilehost/circular-book-italic WIP.otf")',
-//   success: console.log,
-// })
-
-// wx.loadFontFace({
-//   family: 'CSB',
-//   source: 'url("https://bluepiglet30.github.io/IFfilehost/CircularStd-Black WIP.otf")',
-//   success: console.log,
-// })
-
-// wx.loadFontFace({
-//   family: 'CSO',
-//   source: 'url("https://bluepiglet30.github.io/IFfilehost/CircularStd-Book WIP.otf")',
-//   success: console.log,
-// })
-
-// wx.loadFontFace({
-//   family: 'CSM',
-//   source: 'url("https://bluepiglet30.github.io/IFfilehost/CircularStd-Medium WIP.otf")',
-//   success: console.log,
-// })
-
-// wx.loadFontFace({
-//   family: 'CSI',
-//   source: 'url("https://bluepiglet30.github.io/IFfilehost/CircularStd-MediumItalic WIP.otf")',
-//   success: console.log,
-// })

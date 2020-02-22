@@ -15,6 +15,16 @@ Page({
     })
   },
 
+
+  onPullDownRefresh: function () {
+    var myThis = this;
+    myThis.setData({
+      sent: false
+    })
+    wx.stopPullDownRefresh()
+  },
+
+
   home: function () {
     wx.reLaunch({
       url: '/pages/index/index',

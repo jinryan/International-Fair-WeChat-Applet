@@ -40,26 +40,24 @@ Page({
     scrollTop: 100,
     page_to_go: false,
     direction: "",
-
     objectArray: [
-      { id: 1, name: 'Singapore/Malaysia', xmin: 2756, ymin: 734, xmax: 3279, ymax: 907 },
-      { id: 2, name: 'USA', xmin: 3121, ymin: 1125, xmax: 3302, ymax: 1302 },
-      { id: 3, name: 'Korea', xmin: 3121, ymin: 1479, xmax: 3302, ymax: 1826 },
-      { id: 4, name: 'China', xmin: 3121, ymin: 1861, xmax: 3302, ymax: 2167 },
-      { id: 4.1, name: 'China', xmin: 2741, ymin: 2006, xmax: 3078, ymax: 2167 },
+      { id: 0, name: 'Brazil', xmin: 57, ymin: 968, xmax: 232, ymax: 1201 },
+      { id: 7, name: 'SingMa', xmin: 2756, ymin: 734, xmax: 3279, ymax: 907 },
+      { id: 8, name: 'USA', xmin: 1892, ymin: 233, xmax: 2036, ymax: 514 },
+      { id: 6, name: 'Korea', xmin: 3121, ymin: 1479, xmax: 3302, ymax: 1826 },
+      { id: 2, name: 'China', xmin: 3121, ymin: 1861, xmax: 3302, ymax: 2167 },
+      { id: 2.1, name: 'China', xmin: 2741, ymin: 2006, xmax: 3078, ymax: 2167 },
       { id: 5, name: 'Japan', xmin: 2079, ymin: 2006, xmax: 2441, ymax: 2167 },
-      { id: 6, name: 'Canada', xmin: 1616, ymin: 2006, xmax: 2015, ymax: 2167 },
-      { id: 7, name: 'India', xmin: 1429, ymin: 1729, xmax: 1582, ymax: 2004 },
-      { id: 8, name: 'Taiwan', xmin: 1171, ymin: 1482, xmax: 1345, ymax: 2167 },
-      { id: 8.1, name: 'Taiwan', xmin: 666, ymin: 1530, xmax: 1111, ymax: 1756 },
-      { id: 9, name: 'Europe', xmin: 666, ymin: 1955, xmax: 1111, ymax: 2167 },
-      { id: 10, name: 'Latin American', xmin: 63, ymin: 951, xmax: 232, ymax: 1499 },
-      { id: 11, name: 'HK', xmin: 346, ymin: 741, xmax: 500, ymax: 891 },
-      { id: 11.1, name: 'HK', xmin: 704, ymin: 741, xmax: 859, ymax: 891 },
-      { id: 100, name: "Ticket Booth", xmin: 2105, ymin: 1261, xmax: 2599, ymax: 1595},
-      { id: 100.1, name: "Ticket Booth", xmin: 43, ymin: 1509, xmax: 423, ymax: 1820 },
+      { id: 1, name: 'Canada', xmin: 1616, ymin: 2006, xmax: 2015, ymax: 2167 },
+      { id: 4, name: 'India', xmin: 1429, ymin: 1729, xmax: 1582, ymax: 2004 },
+      { id: 10, name: 'Chinese Taipei', xmin: 1171, ymin: 1482, xmax: 1345, ymax: 2167 },
+      { id: 10.1, name: 'Chinese Taipei', xmin: 666, ymin: 1530, xmax: 1111, ymax: 1756 },
+      { id: 3, name: 'Europe', xmin: 666, ymin: 1955, xmax: 1111, ymax: 2167 },
+      { id: 9, name: 'Hong Kong SAR', xmin: 346, ymin: 741, xmax: 500, ymax: 891 },
+      { id: 9.1, name: 'Hong Kong SAR', xmin: 704, ymin: 741, xmax: 859, ymax: 891 },
+      { id: 100, name: "Ticket Booth", xmin: 2105, ymin: 1261, xmax: 2599, ymax: 1595 },
+      { id: 100.1, name: "Ticket Booth", xmin: 64, ymin: 1209, xmax: 300, ymax: 1570 },
     ],
-
   },
 
   onChange: function (e) {
@@ -102,8 +100,8 @@ Page({
         hidden: false,
         mapx: Math.round(e.touches[0].pageX),
         mapy: Math.round(e.touches[0].pageY),
-        newx: Math.round((e.touches[0].pageX - this.data.changeX - this.data.posX + this.data.offsetX) / this.data.scale * 3350 / 755),
-        newy: Math.round((e.touches[0].pageY - this.data.changeY - this.data.posY + this.data.offsetY - 80 + 77) / this.data.scale * 2218 / 500),
+        newx: Math.round((e.touches[0].pageX - this.data.changeX - this.data.posX + this.data.offsetX) / this.data.scale * 3120 / 755),
+        newy: Math.round((e.touches[0].pageY - this.data.changeY - this.data.posY + this.data.offsetY - 80 + 77) / this.data.scale * 2149 / 500),
       })
       console.log("coordinates: ")
       console.log(this.data.newx)
@@ -122,7 +120,7 @@ Page({
             this.data.newy <= obj['ymax']) {
             
             if(obj['id']<12){
-              app.globalData.menu_name = obj['name']
+              app.globalData.menu_name = parseInt(obj['id'])
               wx.navigateTo({
                 url: '/pages/menu_1/menu_1',
               })

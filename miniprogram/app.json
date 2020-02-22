@@ -10,28 +10,26 @@
     "pages/tickets/buy_tickets/buy_tickets",
     "pages/tickets/spend_tickets/spend_tickets",
     "pages/tickets/confirmation/confirmation",
-    "pages/tickets/transfer/transfer",
     "pages/menu_1/menu_1",
     "pages/settings/settings",
     "pages/settings/feedback/feedback",
-    "pages/Error/Error"
+    "pages/Error/Error",
+    "pages/bottom_nav5/vendors/vendors",
+    "pages/bottom_nav5/games/games",
+    "pages/bottom_nav5/menu/menu"
   ],
-
   "permission": {
     "scope.userLocation": {
-      "desc": "Enable location services to use Map functions"
-    },
-    "scope.snsapi_userinfo": {
-      "desc": "Allow access to public user info. Failure to accept this might result in loss of e-tickets or failure to purchase!"
+      "desc": "Enable location services"
     }
   },
-  
   "window": {
     "backgroundColor": "#000000",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000000",
     "navigationBarTitleText": "IF Digital Platform",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json"
 }

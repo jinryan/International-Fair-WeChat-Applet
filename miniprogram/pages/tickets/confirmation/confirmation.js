@@ -18,7 +18,7 @@ function getDateTime() {
   month = (month < 10 ? "0" : "") + month;
   var day = date.getDate();
   day = (day < 10 ? "0" : "") + day;
-  return day + ":" + hour + ":" + min + ":" + sec;
+  return hour + ":" + min;
 }
 
 Page({  
@@ -27,19 +27,20 @@ Page({
     myEaglebuck: app.globalData.myEaglebuck,
     transferAmount: app.globalData.transferAmount,
     booth: app.globalData.booth,
-    showTransfer: app.globalData.showTransfer
+    showTransfer: app.globalData.showTransfer,
+    useableHeight: app.globalData.useableHeight
   },
 
   onLoad: function () {
     var myThis = this
     console.log(app.globalData.booth)
-
     this.setData({
       myEaglebuck: app.globalData.myEaglebuck,
       transferAmount: app.globalData.transferAmount,
       booth: app.globalData.booth,
       showTransfer: app.globalData.showTransfer,
       curTime: getDateTime(),
+      useableHeight: app.globalData.useableHeight
     })
     
     wx.cloud.init()
@@ -66,8 +67,8 @@ Page({
     return
   },
 
-  tickets: function () {
-    wx.redirectTo({
+  bottom_nav2: function () {
+    wx.reLaunch({
       url: "/pages/bottom_nav2/bottom_nav2",
     })
   },

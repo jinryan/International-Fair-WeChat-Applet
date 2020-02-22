@@ -16,10 +16,20 @@
         <view style = "height:15px"></view>
         <input style = "margin-left: 75px; margin-top: -67px; height: 60px; font-size: 40px" name="number" type="number" placeholder="0"></input>
         <view style = "height:40px"></view>
-      <view style = "position: absolute; top: 200px" hidden="{{!msg_show}}">You don't have enough tickets!</view>
-      <view style = "position: absolute; top: 200px" hidden="{{!msg_show1}}">Please enter a valid number of tickets</view>
       <view class = "center" style = "margin-top: -42px; width: 90%; height:1px; background: #b5b5b5"></view>
-      <view style = "height:10px"></view>
+      <view hidden="{{!msg_show}}" class = "center" style = "text-align: center; font-family: CO; color: #c4000a">
+      <view style="height:20px;"/>
+      You don't have enough tickets!
+      </view>
+      <view class = "center" style = "text-align: center; font-family: CO; color: #c4000a;" hidden="{{!msg_show1}}">
+      <view style="height:20px;"/>
+      Please enter a valid number of tickets
+      </view>
+            <view class = "center" style = "text-align: center; font-family: CO; color: #c4000a;" hidden="{{!msg_show2}}">
+      <view style="height:20px;"/>
+      You can only spend {{max_transaction}} tickets per transaction!
+      </view>
+      <view style = "height:30px"></view>
       <button style = "width: 60%; background:#08c060; border-radius: 5px;" form-type='submit'>Submit</button>
       </form>
     </view>
@@ -30,10 +40,10 @@
     <image class="profile_pic" src="{{avatarUrl}}"/>
   </view>
   <view style = "width: 100%; text-align: center; font-family:CBO; font-size: 40rpx; height: 40rpx">
-  Sending to booth: {{transferBoothName}}
+  Sending to User: {{transferUsername}}
   </view>
 
-    <view style = "background: white; width: 100%; height:80%; position: absolute; bottom: 0px; border-top-left-radius: 10px; border-top-right-radius: 10px">
+    <view style = "background: white; width: 100%; top: 380rpx; position: absolute; bottom: 0px; border-top-left-radius: 10px; border-top-right-radius: 10px">
       <view style = "font-family:CBO; margin-top: 20px; margin-left: 20px">
         Transfer amount
       </view>
@@ -42,11 +52,24 @@
         <view style = "height:15px"></view>
         <input style = "margin-left: 75px; margin-top: -67px; height: 60px; font-size: 40px" name="number" type="number" placeholder="0"></input>
         <view style = "height:40px"></view>
-      <view style = "position: absolute; top: 200px" hidden="{{!msg_show}}">You don't have enough tickets!</view>
-      <view style = "position: absolute; top: 200px" hidden="{{!msg_show1}}">Please enter a valid number of tickets</view>
+      <view hidden="{{!msg_show}}" class = "center" style = "text-align: center; font-family: CO; color: #c4000a">
+      <view style="height:20px;"/>
+      You don't have enough tickets!
+      </view>
+      <view class = "center" style = "position: absolute; top: 300rpx; text-align: center; font-family: CO; color: #c4000a;" hidden="{{!msg_show1}}">
+      <view style="height:20px;"/>
+      Please enter a valid number of tickets
+      </view>
       <view class = "center" style = "margin-top: -42px; width: 90%; height:1px; background: #b5b5b5"></view>
       <view style = "height:10px"></view>
       <button style = "width: 60%; background:#08c060; border-radius: 5px;" form-type='submit'>Submit</button>
       </form>
     </view>
+</view>
+
+<view hidden = "{{!paying}}" style="position: fixed; width:100%; height:{{useableHeight+80}}px; z-index:10; background:grey; opacity: 0.5"/>
+
+<view hidden = "{{!paying}}" class = "center" style="position: fixed; top: {{useableHeight/2-80}}px; left: 93.75rpx; z-index: 15; background: white; border-radius: 15px; width: 75%; height: 200rpx">
+  <view style="height:70rpx"/>
+  <view class = "center" style="font-family: CO; font-size:20px; text-align: center; opacity: 1"> Transferring... </view>
 </view>

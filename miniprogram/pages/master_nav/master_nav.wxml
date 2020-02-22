@@ -33,7 +33,7 @@ style="border: none; border-top: 2px solid #{{two}}; float: left;width: 20%; bac
     <image
     class = "nav_icon"
     src = "/images/ticket.png"
-        style="  width: 25px;height: 25px; top: 5px;">
+        style="  width: 27px;height: 27px; top: 6px;">
 
     </image>
 
@@ -60,8 +60,8 @@ style="border: none; border-top: 2px solid #{{five}}; float: left;width: 20%; ba
 
     <image
     class = "nav_icon"
-    src = "/images/food.png"
-        style="  width: 25px;height: 25px; top: 5px;z-index:1;">
+    src = "/images/more.png"
+        style="  width: 27px;height: 27px; top: 5px;z-index:1;">
 
     </image>
     

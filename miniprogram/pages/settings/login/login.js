@@ -24,6 +24,15 @@ Page({
     })
   },
 
+  onPullDownRefresh: function () {
+    app.globalData.boothUser = '',
+      this.setData({
+        userValue: '',
+        passValue: '',
+      })
+      wx.stopPullDownRefresh()
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -89,16 +98,34 @@ Page({
         this.setData({
           passData: passData
         })
-        if(this.data.passvalue==this.data.passData.password){
-          console.log("Correct Login")
+        if(this.data.passData[0] == undefined){
           this.setData({
-            correctLogin: true
+            errorHidden: false
           })
+        }else{
+          console.log(this.data.passValue)
+          console.log(passData)
+          console.log("THIS IS THE BOOLEAN")
+          var loggedIn = this.data.passValue == this.data.passData[0].password
+          console.log(loggedIn)
+          if (loggedIn){
+            console.log("Correct Login")
+            this.setData({
+              correctLogin: true
+            })
             wx.navigateTo({
-            url: '/pages/bottom_nav2/Club_info/Club_info',
-          })
-          app.globalData.boothUser = this.data.userValue
-          app.globalData.boothHidden = false
+              url: '/pages/bottom_nav2/Club_info/Club_info',
+            })
+            console.log("Booth user")
+            app.globalData.boothUser = this.data.userValue
+            app.globalData.boothHidden = false
+            console.log(app.globalData.boothUser)
+
+          } else{
+              this.setData({
+                errorHidden: false
+              })
+          }
         }
       }
     })

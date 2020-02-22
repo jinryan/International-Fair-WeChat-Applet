@@ -7,44 +7,51 @@ Page({
    * Page initial data
    */
   data: {
-    name: '',
+    index: 0,
     imageNames: [],
     loadImages: 1,
+    menuArray: [],
+    currentMenu: [],
+    name: '',
+    popup_hidden: true,
+    popup_name: "",
+    popup_description: "",
+    indexx: 0,
   },
 
 
-
-
-
+  popup: function (id) {
+    var ind = id.currentTarget.dataset.index
+    this.setData({
+      popup_hidden: false,
+      popup_name: this.data.currentMenu[ind]['name'],
+      // popup_description: this.data.currentMenu[ind]['description'],
+      indexx: ind,
+    })
+  },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function () {
 
-    // If you want to download the image beforehand, figure out a way, I don't know how to. Below is my attempt
-    // wx.getStorage({
-    //   key: 'https://bluepiglet30.github.io/IFfilehost/American0.png',
-    //   success: function (res) {
-    //     console.log("success")
-    //     console.log(res)
-    //   },
-    //   fail: function (res) {
-    //     console.log("fail")
-    //     console.log(res)
-    //   }
-    // })
-
-
-    // Back to important stuff
 
     this.setData({
-      imageNames: app.globalData.imageNames,
-      name: app.globalData.menu_name,
+      menuArray: app.globalData.menuArray,
+      index: app.globalData.menu_name,
     })
-
+    this.setData({
+      currentMenu: this.data.menuArray[this.data.index].items,
+      name: this.data.menuArray[this.data.index]._id.toLowerCase(),
+    })
+    console.log(this.data.name)
+    console.log(this.data.currentMenu)
   },
-
+closePopup: function(){
+  this.setData({
+    popup_hidden:true,
+  })
+},
   /**
    * Lifecycle function--Called when page is initially rendered
    */
@@ -78,6 +85,17 @@ Page({
    */
   onPullDownRefresh: function () {
 
+    this.setData({
+      menuArray: app.globalData.menuArray,
+      index: app.globalData.menu_name,
+    })
+    this.setData({
+      currentMenu: this.data.menuArray[this.data.index].items,
+      name: this.data.menuArray[this.data.index]._id.toLowerCase(),
+    })
+    console.log(this.data.menuArray)
+    console.log(this.data.currentMenu)
+    wx.stopPullDownRefresh()
   },
 
   /**

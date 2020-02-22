@@ -2,9 +2,10 @@
 <image class="profile_pic" src="{{avatarUrl}}"/>
 </view>
 <view class="user_text"> <view style = "width: 100%; font-size: 40rpx; text-align: center; font-family:CO;">
-        <view style="height:12px"/>
-        User: {{userInfo.nickName}}
-      </view></view>
+  <view style="height:12px"/>
+  User: {{userInfo.nickName}}
+  </view>
+</view>
 
 <button class="button" bindtap="toLanguage">
 
@@ -14,11 +15,11 @@
 
 </button>
 
-<view class="button2" style = "z-index:5">
+<!-- <view class="button2" style = "z-index:5">
 <view class="button_text2">Dark Mode</view>
 <image src="/images/dark.png" class="settings_icon"></image>
 <switch class="switch" bindchange="changeBGC"/>
-</view>
+</view> -->
 
 <button class="button" bindtap="toQRcode">
 <view class="button_text">View QR Code</view>
@@ -40,13 +41,13 @@
 
 <button class="button" bindtap="toSponsors"><view class="button_text">Sponsors</view>
 
-<image src="/images/sponsor.png" class="settings_icon"></image>
+<image src="/images/sponsor.png" class="settings_icon" style = "opacity: 0.7"></image>
 <image src="/images/right_arrow.png" class="right_arrow"></image>
 </button>
 
 <button class="button2" bindtap="toCredits">
 <view class="button_text">Credits</view>
-<image src="/images/x.png" class="settings_icon"></image>
+<image src="/images/credits.png" class="settings_icon"/>
 <image src="/images/right_arrow.png" class="right_arrow"></image>
 </button>
 
@@ -56,7 +57,21 @@
 <image src="/images/right_arrow.png" class="right_arrow"></image>
 </button>
 
-<view style="height:50px"/>
+<button class="button" bindtap="toTutorial">
+<view class="button_text">View Tutorial</view>
+<image src="/images/tutorial.png" class="settings_icon2"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+</button>
+
+
+<button class="button" bindtap="toHistory">
+<view class="button_text" style="margin-top: 7rpx">Transaction History</view>
+<image src="/images/history.png" class="settings_icon3"></image>
+<image src="/images/right_arrow.png" class="right_arrow"></image>
+</button>
+
+<view style="height:50px"></view>
+
 <!-- 
 <view class="button">
 <view class="button_text2">?</view>

@@ -1,2 +1,1 @@
-<!--miniprogram/pages/settings/sponsors/sponsors.wxml-->
-<text>miniprogram/pages/settings/sponsors/sponsors.wxml</text>
+<view style="background:white;"><image class="sponsor_image" src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs/sponsors.png"/></view>

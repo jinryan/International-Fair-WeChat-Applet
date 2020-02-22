@@ -1,1 +1,8 @@
 /* miniprogram/pages/settings/sponsors/sponsors.wxss */
+page{
+  background: white;
+}
+.sponsor_image{
+  width: 750rpx;
+  height: 781rpx;
+}

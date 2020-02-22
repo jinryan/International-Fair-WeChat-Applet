@@ -1,6 +1,6 @@
 <view>
   <image
-  src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
   class = "header_alt">
   </image>
   </view>
@@ -9,7 +9,7 @@
 </view>
 
 <view wx:if="{{!sent}}">
-<image class = "center" style="width: 375rpx; height: 558rpx" src = "https://bluepiglet30.github.io/IFfilehost/baby.png"/>
+<image class = "center" style="width: 375rpx; height: 558rpx" src = "cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/baby.png"/>
 
 <view class = "container" style="position: relative; font-size: 18; font-family: CO; bottom: 0px;">
 <view style = "height:10px"></view>
@@ -32,10 +32,6 @@ Your feedback is valuable, please leave any comments or concerns!
             <button class="submitButton" bindtap="submitFeedback">Submit</button>
 </view>
 </view>
-<!-- 
-<view style="z-index:5" class = "center">
-
-</view> -->
 
 <view wx:if="{{sent}}">
 <view class = "container" style="font-family: CO; text-align: center; font-size: 15px">

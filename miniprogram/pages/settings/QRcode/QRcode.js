@@ -49,7 +49,10 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      qrData: app.globalData.ID,
+    })
+    wx.stopPullDownRefresh()
   },
 
   /**

@@ -19,7 +19,7 @@ function getDateTime() {
   month = (month < 10 ? "0" : "") + month;
   var day = date.getDate();
   day = (day < 10 ? "0" : "") + day;
-  return year + ":" + month + ":" + day + ":" + hour + ":" + min + ":" + sec;
+  return hour + ":" + min + ":" + sec;
 }
 
 function errorPage(message) {
@@ -42,6 +42,7 @@ Page({
     nickName: "",
     msg_show: false,
     msg_show1: false,
+    msg_show2: false,
     transfering: false,
     key: "",
     otherUserEaglebuck: 0,
@@ -50,6 +51,9 @@ Page({
     avatarUrl: '/images/user_unlogin.png',
     userInfo: {},
     aspect_rat: 0.0,
+    paying: false,
+    useableHeight: app.globalData.useableHeight,
+    max_transaction: 99999999999999,
   },
 
   // scan: function () {
@@ -66,40 +70,46 @@ Page({
   //   })
   // },
 
-  onLoad: function(){
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    })
-    wx.getSystemInfo({
+  onLoad: function () {
+    wx.getUserInfo({
       success: res => {
         this.setData({
-          aspect_rat: res.screenHeight/res.screenWidth
+          avatarUrl: res.userInfo.avatarUrl,
+          userInfo: res.userInfo,
         })
-        console.log(this.data.aspect_rat)
-      },
-    })
+        console.log(res.userInfo)
+      }
+    }),
+
+
+      wx.getSystemInfo({
+        success: res => {
+          this.setData({
+            aspect_rat: res.screenHeight / res.screenWidth,
+            paying: false
+          })
+          console.log(this.data.aspect_rat)
+        },
+      }),
+      this.setData({
+        max_transaction: app.globalData.max_transaction
+      })
+    if (app.globalData.max_transaction == "Unlimited") {
+      this.setData({
+        max_transaction: 999999999999
+      })
+    }
+
   },
 
-  
   onReady: function () {
+
     var myThis = this
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
         console.log("the qr code says: " + res.result)
-        if(res.result.length>1){
+        if(res.result.charAt(0) == '_'){
           myThis.setData({
             key: res.result,
             transfering: true
@@ -120,7 +130,7 @@ Page({
               })
               } catch (err){
                 console.log("scanned incorrect")
-                errorPage("you scanned incorrect")
+                errorPage("you scanned an invalid qr code") 
 
               }
             },
@@ -138,7 +148,7 @@ Page({
             name: "pullstuff",
             data: {
               _id: myThis.data.qrData,
-              field: "booths"
+              field: "boothData"
             },
             fail: (res) => {
               console.log(res)
@@ -146,12 +156,14 @@ Page({
             success: (res) => {
               try{
                 var retInfo = res.result.data[0]
-                console.log(retInfo.boothName)
+                console.log(retInfo._id)
                 myThis.setData({
-                  transferBoothName: retInfo.boothName
-                })  
+                  transferBoothName: retInfo._id
+                })
+
               }catch (err){
-                console.log(err.message())
+                console.log(err)
+                errorPage("you scanned an invalid qr code") 
               }
             },
           })
@@ -162,14 +174,155 @@ Page({
 
 
   update: function (price) {
-    var myThis = this;
-
-    if (app.globalData.myEaglebuck >= parseInt(price.detail.value.number) && parseInt(price.detail.value.number) > 0) {
-      app.globalData.myEaglebuck -= parseInt(price.detail.value.number)
-      app.globalData.transferAmount = parseInt(price.detail.value.number)
+    console.log("AM I PAYING?")
+    console.log(this.data.paying)
+    if (!this.data.paying) {
+      var myThis = this;
       this.setData({
-        myEaglebuck: app.globalData.myEaglebuck,
+        paying: true
       })
+      if (app.globalData.myEaglebuck >= parseInt(price.detail.value.number) && parseInt(price.detail.value.number) > 0 && parseInt(price.detail.value.number) <= this.data.max_transaction) {
+        app.globalData.myEaglebuck -= parseInt(price.detail.value.number)
+        app.globalData.transferAmount = parseInt(price.detail.value.number)
+        this.setData({
+          myEaglebuck: app.globalData.myEaglebuck,
+        })
+        wx.cloud.callFunction({
+          name: "update",
+          data: {
+            _id: app.globalData.ID,
+            eaglebuck: app.globalData.myEaglebuck,
+            field: "test"
+          },
+        })
+
+        wx.cloud.callFunction({
+          name: "pullstuff",
+          data: {
+            _id: myThis.data.qrData,
+            field: "boothData"
+          },
+          fail: (res) => {
+            console.log(res)
+          },
+          success: (res) => {
+            var retInfo = res.result.data[0]
+            var boothEaglebucks2 = retInfo.eaglebuck
+            console.log(retInfo._id)
+            boothEaglebucks2 += parseInt(price.detail.value.number)
+
+            myThis.setData({
+              boothEaglebucks: boothEaglebucks2,
+              boothName: retInfo._id
+            })
+
+            console.log(myThis.data.boothName)
+            app.globalData.booth = myThis.data.boothName
+            console.log(app.globalData.booth)
+
+            wx.cloud.callFunction({
+              name: "update",
+              data: {
+                _id: this.data.qrData,
+                eaglebuck: this.data.boothEaglebucks,
+                field: "boothData"
+              },
+              success: (res) => {
+                wx.getUserInfo({
+                  success: function (res) {
+                    var userInfo = res.userInfo
+                    console.log(userInfo.nickName)
+                    myThis.setData({
+                      nickName: userInfo.nickName,
+                    })
+
+                    wx.cloud.callFunction({
+                      name: "pushTransaction",
+                      data: {
+                        key: app.globalData.ID,
+                        username: myThis.data.nickName,
+                        eaglebuck: app.globalData.transferAmount,
+                        time: getDateTime(),
+                        boothName: myThis.data.boothName
+                      },
+                    })
+                    app.globalData.showTransfer = true
+                    wx.reLaunch({
+                      url: '/pages/tickets/confirmation/confirmation',
+                    })
+                  }
+                })
+
+              }
+
+
+
+            })
+
+          },
+        })
+      }
+
+      else if (parseInt(price.detail.value.number) > app.globalData.myEaglebuck) {
+        this.setData({
+          msg_show: true,
+          msg_show1: false,
+          msg_show2: false,
+          paying: false,
+        })
+      }
+      else if (parseInt(price.detail.value.number)>this.data.max_transaction){
+        this.setData({
+          msg_show: false,
+          msg_show1: false,
+          msg_show2: true,
+          paying: false,
+        })
+      }
+      else {
+        this.setData({
+          msg_show1: true,
+          msg_show: false,
+          msg_show2: false,
+          paying: false,
+        })
+      }
+    } else {
+      console.log("already transferring")
+    }
+
+  },
+
+
+
+  transfer: function (price) {
+
+    console.log("AM I PAYING?")
+    console.log(this.data.paying)
+    console.log(price)
+    if(!this.data.paying){
+      this.setData({
+        paying: true
+      })
+      if (app.globalData.myEaglebuck >= parseInt(price.detail.value.number) && parseInt(price.detail.value.number) > 0 && parseInt(price.detail.value.number) <= this.data.max_transaction) {
+      var myThis = this
+      wx.cloud.init()
+      if (app.globalData.myEaglebuck >= parseInt(price.detail.value.number)) {
+        app.globalData.myEaglebuck -= parseInt(price.detail.value.number)
+      }
+      else {
+        this.setData({
+          msg_show: true,
+        })
+      }
+
+        console.log("old eagle bucks: " + app.globalData.myEaglebuck)
+        console.log("person transfering acc" + app.globalData.ID)
+        console.log("person recieving acc" + myThis.data.key)
+        console.log("transfering amount" + parseInt(price.detail.value.number))
+        console.log("begin transfering to user below")
+
+        console.log("new eagle bucks: " + app.globalData.myEaglebuck)
       wx.cloud.callFunction({
         name: "update",
         data: {
@@ -177,155 +330,66 @@ Page({
           eaglebuck: app.globalData.myEaglebuck,
           field: "test"
         },
-      })
-
-      wx.cloud.callFunction({
-        name: "pullstuff",
-        data: {
-          _id: myThis.data.qrData,
-          field: "booths"
-        },
-        fail: (res) => {
-          console.log(res)
-        },
         success: (res) => {
-          var retInfo = res.result.data[0]
-          var boothEaglebucks2 = retInfo.eaglebuck
-          console.log(retInfo.boothName)
-          boothEaglebucks2 += parseInt(price.detail.value.number)
-
-          myThis.setData({
-            boothEaglebucks: boothEaglebucks2,
-            boothName: retInfo.boothName
-          })
-
-          console.log(myThis.data.boothName)
-          app.globalData.booth = myThis.data.boothName
-          console.log(app.globalData.booth)
-
+          console.log("updated user sending's eaglebucks")
           wx.cloud.callFunction({
-            name: "update",
+            name: "pullstuff",
             data: {
-              _id: this.data.qrData,
-              eaglebuck: this.data.boothEaglebucks,
-              field: "booths"
+              _id: myThis.data.key,
+              field: "test",
             },
             success: (res) => {
-              wx.getUserInfo({
-                success: function (res) {
-                  var userInfo = res.userInfo
-                  console.log(userInfo.nickName)
-                  myThis.setData({
-                    nickName: userInfo.nickName,
-                  })
-
+              console.log("pulled user transfered to eagle bucks: ")
+              myThis.data.otherUserEaglebuck = res.result.data[0].eaglebuck
+              console.log(myThis.data.otherUserEaglebuck)
+              myThis.data.otherUserEaglebuck += parseInt(price.detail.value.number)
+              console.log(myThis.data.otherUserEaglebuck)
+              wx.cloud.callFunction({
+                name: "update",
+                data: {
+                  _id: myThis.data.key,
+                  field: "test",
+                  eaglebuck: myThis.data.otherUserEaglebuck,
+                },
+                success: (res) => {
                   wx.cloud.callFunction({
-                    name: "pushTransaction",
+                    name: "pushTransferTransaction",
                     data: {
-                      key: app.globalData.ID,
-                      username: myThis.data.nickName,
-                      eaglebuck: app.globalData.transferAmount,
+                      transferFrom: app.globalData.ID,
+                      transferTo: myThis.data.key,
+                      eaglebuck: parseInt(price.detail.value.number),
                       time: getDateTime(),
-                      boothName: myThis.data.boothName
                     },
                   })
+                  console.log("finished transfer")
                   app.globalData.showTransfer = true
                   wx.reLaunch({
                     url: '/pages/tickets/confirmation/confirmation',
                   })
+                  app.globalData.one = 'ffffff'
+                  app.globalData.two = 'C94731'
+                  app.globalData.three = 'ffffff'
+                  app.globalData.four = 'ffffff'
+                  app.globalData.five = 'ffffff'
                 }
               })
 
             }
-
-
-
           })
+        }
 
-        },
       })
-    }
-
-    else if (parseInt(price.detail.value.number) > app.globalData.myEaglebuck) {
-      this.setData({
-        msg_show: true,
-        msg_show1: false,
-      })
-    }
-
-    else {
-      this.setData({
-        msg_show1: true,
-        msg_show: false,
-      })
-    }
-
-  },
-
-
-
-  transfer: function (number) {
-    var myThis = this
-    wx.cloud.init()
-    console.log("old eagle bucks: " + app.globalData.myEaglebuck)
-
-    if (app.globalData.myEaglebuck >= parseInt(number.detail.value.number)) {
-      app.globalData.myEaglebuck -= parseInt(number.detail.value.number)
-    }
-    else {
-      this.setData({
-        msg_show: true,
-      })
-    }
-
-    console.log("new eagle bucks: " + app.globalData.myEaglebuck)
-
-    wx.cloud.callFunction({
-      name: "update",
-      data: {
-        _id: app.globalData.ID,
-        eaglebuck: app.globalData.myEaglebuck,
-        field: "test"
-      },
-      success: (res) => {
-        console.log("updated user sending's eaglebucks")
-        wx.cloud.callFunction({
-          name: "pullstuff",
-          data: {
-            _id: myThis.data.key,
-            field: "test",
-          },
-          success: (res) => {
-            console.log("pulled user transfered to eagle bucks: ")
-            myThis.data.otherUserEaglebuck = res.result.data[0].eaglebuck
-            console.log(myThis.data.otherUserEaglebuck)
-            myThis.data.otherUserEaglebuck += parseInt(number.detail.value.number)
-            console.log(myThis.data.otherUserEaglebuck)
-            wx.cloud.callFunction({
-              name: "update",
-              data: {
-                _id: myThis.data.key,
-                field: "test",
-                eaglebuck: myThis.data.otherUserEaglebuck,
-              },
-              success: (res) => {
-                console.log("finished transfer")
-                wx.reLaunch({
-                  url: '/pages/bottom_nav2/bottom_nav2',
-                })
-                app.globalData.one = 'ffffff'
-                app.globalData.two = 'C94731'
-                app.globalData.three = 'ffffff'
-                app.globalData.four = 'ffffff'
-                app.globalData.five = 'ffffff'
-              }
-            })
-
-          }
+      }else{
+        this.setData({
+          msg_show: false,
+          msg_show1: true,
+          msg_show2: false,
+          paying: false,
         })
       }
-
-    })
+    }else{
+      console.log("already transferring")
+    }
   },
 
 

@@ -1,175 +1,337 @@
-<!-- <view
-class = "header">
-<image 
-    src="/images/SAS Logo.png"
-    class="logo">
-</image>
+<!-- Loading pages -->
+<view hidden = "{{!loading}}" style="position: fixed; width:100%; height:{{2000}}rpx; z-index:10; background:grey; opacity: 0.5"/>
 
-<CircularStdBlack
-class = "header_text">
-INTERNATIONAL FAIR 2019
-</CircularStdBlack>
+<view hidden = "{{!loading}}" class = "center" style="position: fixed; top: {{500}}rpx; left: 93.75rpx; z-index: 15; background: white; border-radius: 15px; width: 75%; height: 200rpx">
+  <view style="height:70rpx"/>
+  <view class = "center" style="font-family: CO; font-size:20px; text-align: center; opacity: 1"> 
+  <view wx:if="{{languagePreference==0}}">
+    Loading...
+  </view>
+  <view wx:elif="{{languagePreference==1}}">
+    下载中...
+  </view>
+  <view wx:else>
+    로드 중...
+  </view>
+  </view>
+</view>
 
-</view> -->
-<!-- <view style="height:{{screenH-230}}px;"> -->
-<view wx:if="{{true}}">
-  <view hidden="{{show_tutorial}}">
-  <view>
-  <image
-  src="https://bluepiglet30.github.io/IFfilehost/Header.png"
-  class = "header_alt">
-  </image>
-  </view>
-  <view
-  class = "filler">
-  </view>
+<view hidden = "{{!loading}}">
+    <view bindtap="close_popup" class="button">
+    <image src="/images/x.png" style="z-index: 50; opacity: 0.5; position: fixed; height:40rpx; width: 40rpx;top:20rpx;left:20rpx"></image>
+    </view> 
+</view>
 
-  <view bindtap= "toSettings">
-  <image src="/images/Settings.png" class="settings">
-  <button type="settings" size="mini" bindtap="settings"> settings </button>
-  </image>
-  </view>
-    <!-- <canvas
-    style="width: {{screenW}}px; height: {{screenW/1.5}}px;" canvas-id="map_preview"> -->
-    <!-- <image 
-        src="/images/Puxi.png" 
-        style="width: 1000px; height: 1000px; position:absolute; clip:rect({{cropT}}px,auto,auto,{{cropL}}px); top: -{{cropT}}px; left: -{{cropL}}px">
-    </image> -->
-    <!-- <canvas style="width:10px; height:10px; left:{{screenW/2-5}}px; top: {{screenW/3-5}}px; background:blue;">
-    
-    </canvas> -->
-    <view style = "position:absolute; height: 400rpx; width: 100%; z-index: 15" bindtap="bottom_nav1">
+<view style = "width:750rpx">
+  <view wx:if="{{true}}">
+    <view hidden="{{show_tutorial}}">
+    <view>
+    <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
+    class = "header_alt">
+    </image>
     </view>
-    
-    <map
-          id="myMap"
-          style="width: 100%; height:400rpx; position: relative; box-shadow: 0px 0px 5px #d3d3d3;"
-          latitude="{{latitude}}"
-          longitude="{{longitude}}"
-          markers="{{markers}}"
-          scale="17"
-          show-location="true"
-          enable-zoom="{{asdfasdf}}"
-          enable-scroll="{{asdfasdf}}"
-          enable-rotate="{{asdfasdf}}">
-      </map>
+    <view
+    class = "filler">
+    </view>
 
-      <!-- <button bindtap="moveToLocation" type="primary" hidden = "True">移动位置</button> -->
+    <view bindtap= "toSettings" style="z-index: 50; position: fixed; top: 0px; right: 0px; width: 100rpx; height: 100rpx;">
+    <image src="/images/setting.png" style="width:50rpx; height:50rpx; top: 26rpx; right:20rpx; position:fixed;"/>
+    </view>
 
-  <view class = "center" style="position: relative; z-index:3; background: white; top: 20rpx; height: 180px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
-      <view style="position:absolute; left:20rpx; top:35rpx; font-family:CB; font-size:20px; z-index: 5">
-        <view wx:if="{{languagePreference==0}}">
-          BALANCE: {{myEaglebuck}} EAGLE BUCKS
-        </view>
-        <view wx:elif="{{languagePreference==1}}">
-          余额: {{myEaglebuck}} 鹰镑
-        </view>
-        <view wx:else>
-          잔고: {{myEaglebuck}} 전자 티켓
-        </view>
-        </view>
-      <view style="position:absolute; left:20rpx; top:115rpx; width: 60%;font-family: CO; font-size:13px; z-index: 5">
-        <view wx:if="{{languagePreference==0}}">
-          Eagle Bucks are the currency of the
-          SAS PX Eagles. Use it to play games,
-          buy food and so much more!！
-        </view>
-        <view wx:elif="{{languagePreference==1}}">
-          鹰镑是SAS PX Eagles的货币。
-          用它来玩游戏，买食物等等！
-        </view>
-        <view wx:else>
-          SAS 전자 티켓은 SAS PX Eagles의 
-          통화입니다. 그것을 사용하여 게임을하고
-          음식을 구입하는 등 다양한 것들을
-          체험하세요!
-        </view>
+      <view style = "position:absolute; height: 400rpx; width: 100%; z-index: 15" bindtap="bottom_nav1">
       </view>
-      <view bindtap = "buy_tickets" style = "position: absolute; left: 5px; bottom:10px; width: 120px; height: 30px; background:white; border-radius: 15px; text-size: 15px; text-align: center; color: #c4000a; font-family: COI; border: 1px solid rgba(220, 0, 0, 1)">
-          <view style="height:4px"></view>
-          Buy Tickets
+      
+      <map
+            id="myMap"
+            style="width: 100%; height:400rpx; position: relative; box-shadow: 0px 0px 5px #d3d3d3;"
+            latitude="{{latitude}}"
+            longitude="{{longitude}}"
+            markers="{{markers}}"
+            scale="17"
+            show-location="true"
+            enable-zoom="{{asdfasdf}}"
+            enable-scroll="{{asdfasdf}}"
+            enable-rotate="{{asdfasdf}}">
+        </map>
+
+    <view class = "center" style="position: relative; z-index:3; background: white; height: 280px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
+      <view class="cardImage">
+      <video src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/IF.mp4" loop muted autoplay="{{true}}" style="margin-left: -150rpx; margin-top: -45px; width:1000rpx; height: 450rpx"/>
       </view>
-
-      <view style = "position: relative; top: 5px; left:430rpx">
-      <image class = "ticketBG" src = "/images/TicketBg.png"/>
+      <view style='height:20px'/>
+      <view style="left: 30rpx; position: relative; font-family:CO; font-size:18px; z-index: 5; width: 80%">
+      <view wx:if="{{languagePreference==0}}">
+        <!-- Welcome to the 25th SAS Puxi International Fair -->
+        International Fair 2019 is over.
       </view>
-  </view>
-  
-  <view style="height:40rpx"></view>
-
-  <!-- <view class = "center" style="z-index:3; background: white; top: 20rpx; height: 70px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
-    <image src="/images/ScheduleIcon.png" class = "scheduleIcon" style = "top: 10px; left: 2rpx"/>
-  </view> -->
-<!--   
-  <view style="height:10rpx"></view> -->
-
-  <view class="scheduleView" style="box-shadow: 0px 0px 5px #d3d3d3;">
-    <swiper
-        indicator-dots="{{true}}" autoplay="{{true}}" circular="{{false}}" vertical="{{false}}"
-        interval="{{5000}}" duration="{{500}}" previous-margin="{{0}}px" next-margin="{{0}}px">
-        <block wx:for="{{nextEvent}}" wx:key="{{_id}}">
-          <swiper-item>
-            <view class="scheduleInfo">
-            <view style="height:1px"/>
-        <view style = "margin-top: 10px; margin-left:20rpx; margin-right:20rpx" >
-          <view style="height:5px"/>
-          <view style= "color: #392323; font-size:20px; font-family: CB">
-            Upcoming Event at {{item.showtime}} : {{item._id}}
+      <view wx:elif="{{languagePreference==1}}">
+        欢迎参加第25届SAS Puxi International Fair
+      </view>
+      <view wx:else> 
+        제 25회 SAS Puxi International Fair에 오신 것을 환영합니다
+      </view>
+      </view>
+      <view style='height:5px'/>
+      <view style="left: 30rpx; position: relative; font-family:CO; font-size:14px; z-index: 5; width: 90%">
+      <view wx:if="{{languagePreference==0}}">
+        <!-- Enjoy a day of games, prizes, performances, and amazing food on campus. -->
+        We hope you enjoyed using this app. This has been an incredible journey. Feel free to leave any comments in the feedback section of the settings page. -The Development Team.
+      </view>
+      <view wx:elif="{{languagePreference==1}}">
+        在校园里享受一天的游戏，奖品，表演和美味的食物。
+      </view>
+      <view wx:else>
+        캠퍼스에서 게임, 경품, 공연 및 맛있는 음식을 즐기세요.
+      </view>
+      </view>
+    </view>
+    <view style="height:10px"/>
+    <view class = "center" style="position: relative; z-index:3; background: white; height: 160px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
+        <view style="height: 35rpx"/>
+        <view style="position:relative; left:30rpx;font-family:CO; font-size:20px; width: 720rpx; z-index: 5">
+          <view wx:if="{{languagePreference==0}}">
+            Balance: {{myEaglebuck}} Eagle Bucks
           </view>
-          <view style= "color: #392323; font-family: CO">
-            {{item.location}}
+          <view wx:elif="{{languagePreference==1}}">
+            余额: {{myEaglebuck}} 鹰镑
           </view>
-          <view style= "color: #392323; font-size:14px; font-family: CO">
-            {{item.description}}
+          <view wx:else>
+            잔고: {{myEaglebuck}} 전자 티켓
           </view>
-      </view>
-      <view style="height:10px"/>
-      <view bindtap = "bottom_nav4" class = "redButton">
-          <view style="height:4px"></view>
-          Today's Events
-      </view>
+          </view>
+          <view style="height: 10px"/>
+        <view style="position:relative; left:30rpx; width: 60%;font-family: CO; font-size:13px; z-index: 5">
+          <view wx:if="{{languagePreference==0}}">
+            Eagle Bucks are the currency of the
+            SAS PX Eagles. Use it at participating game and food booths!
+          </view>
+          <view wx:elif="{{languagePreference==1}}">
+            鹰镑是SAS PX Eagles的货币。
+            用它来玩游戏，买食物等等！
+          </view>
+          <view wx:else>
+            SAS 전자 티켓은 SAS PX Eagles의 
+            통화입니다. 그것을 사용하여 게임을하고
+            음식을 구입하는 등 다양한 것들을
+            체험하세요!
+          </view>
+        </view>
+        <button open-type="getUserInfo" lang="en" 
+     bindgetuserinfo="onGotUserInfo" bindtap = "bottom_nav2" class = "redButton">
+            <view style = "position: absolute; margin-top:-10px"> 
+            <view wx:if="{{languagePreference==0}}">
+              See Tickets
             </view>
-          </swiper-item>
-        </block>
-      </swiper>
+            <view wx:elif="{{languagePreference==1}}">
+              查看鹰镑
+            </view>
+            <view wx:else>
+              티켓 구매
+            </view>
+            </view>
+        </button>
+        <image class = "ticketBG" src = "/images/Eagle.png"/>
     </view>
-
-    <view class = "center" style="position: relative; z-index:3; top: 10px; background: white; height: 120px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
-      <view class = "typeOverlay">
-        <image style = "width: 100px; height:100px;" src = "/images/alert.png"/>
-      </view>
-      <view style="position:absolute; left:20rpx; top:35rpx; font-family:CB; font-size:20px; z-index: 5">
-        Announcement!
-      </view>
-      <view class = "center" style="position:absolute; left: 10px; width:500rpx; top:115rpx; font-family: CO; font-size:13px; z-index: 5">
-        {{announcementMessage}}
-      </view>
-    </view>
-  <view style="height:100px"/>
-  <include src="/pages/master_nav/master_nav.wxml"/>
-
-  </view>
-
-  <!--TUTORIAL PAGEEEEEEEEEE-->
-  <view class="tutorialSlide" wx:if="{{show_tutorial}}">
-
-  <swiper
-        indicator-dots="{{true}}" autoplay="{{false}}" circular="{{false}}" vertical="{{false}}"
-       previous-margin="{{0}}px" next-margin="{{0}}px" class="tutorialSlide">
-        <block wx:for="{{tutorialSlides}}" wx:key="{{id}}">
-          <swiper-item>
-
-          <view class="tutorialSlide" wx:if="{{item.color==4206963}}">
-          <button class="finishb" bindtap="tutorial">Finish</button>
-          </view>
-
-            <view class="tutorialSlide" style="background-color: {{item.color}}" wx:else>
-                      <button class="finish" bindtap="tutorial">Skip Tutorial</button>
-          </view>
-          </swiper-item>
-        </block>
-      </swiper>
     
+    <view style="height:10px"></view>
 
+    <!-- <view class = "center" style="z-index:3; background: white; top: 20rpx; height: 70px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;">
+      <image src="/images/ScheduleIcon.png" class = "scheduleIcon" style = "top: 10px; left: 2rpx"/>
+    </view> -->
+  <!--   
+    <view style="height:10rpx"></view> -->
+
+    <!-- <view class="scheduleView" style="box-shadow: 0px 0px 5px #d3d3d3;"> -->
+      <swiper
+          indicator-dots="{{true}}" autoplay="{{true}}" circular="{{false}}" vertical="{{false}}"
+          interval="{{5000}}" duration="{{500}}" previous-margin="{{0}}px" next-margin="{{0}}px" style="box-shadow: 0px 0px 5px #d3d3d3; height: 160px;">
+          <block wx:for="{{nextEvent}}" wx:key="{{_id}}">
+            <swiper-item>
+              <view class="scheduleInfo">
+              <view style="height:1px"/>
+          <view style = "margin-top: 10px; margin-left:30rpx; margin-right:20rpx" >
+            <view style="height:5px"/>
+              <view wx:if="{{item.time>time}}" style= "font-size:20px; font-family:CO; color: #392323">
+              <view wx:if="{{languagePreference==0}}">
+                Coming up: {{item._id}}
+              </view>
+              <view wx:elif="{{languagePreference==1}}">
+                接下来: {{item._id}}
+              </view>
+              <view wx:else>
+                곧: {{item._id}}
+              </view>
+              </view>
+
+              <view wx:elif="{{item.time<time}}" style= "font-size:20px; font-family: CO; color: #392323">
+              <view wx:if="{{languagePreference==0}}">
+                Up now: {{item._id}}
+              </view>
+              <view wx:elif="{{languagePreference==1}}">
+                现在: {{item._id}}
+              </view>
+              <view wx:else>
+                지금: {{item._id}}
+              </view>
+              </view>
+              <view wx:else style= "font-size:20px; font-family: CO; color: #392323">
+              {{item._id}}
+              </view>
+              <view style = "height: 5px; font-family: CO"/>
+              <view style = "color: #392323; font-family: CO">
+              {{item.showtime}}
+              {{item.location}}
+              </view>
+        </view>
+        <view style="height:10px"/>
+              </view>
+            </swiper-item>
+          </block>
+        <view bindtap = "bottom_nav4" class = "redButton">
+            <view style="height:4px"></view>
+            <view wx:if="{{languagePreference==0}}">
+              All Events
+            </view>
+            <view wx:elif="{{languagePreference==1}}">
+              所有活动
+            </view>
+            <view wx:else>
+              오늘의 이벤트
+            </view>
+        </view>
+        </swiper>
+
+<view style= "height:10px"/>
+
+<view class="raffle">
+  <view class="cardImage">
+      <image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/weltmeister.jpg" style="margin-left: 0rpx; margin-top: -45px; width:750rpx; height: 430rpx"/>
+  </view>
+<view class="raffleText" wx:if="{{raffleUpcoming}}">
+  <view wx:if="{{languagePreference==0}}">
+  Upcoming Raffle Drawing at {{raffleTime/100}}:00
+  </view>
+  <view wx:elif="{{languagePreference==1}}">
+  即将到来的抽奖活动: {{raffleTime/100}}:00
+  </view>
+  <view wx:else>
+  다음 래플 드로잉은 {{raffleTime/100}}:00
+  </view>
+</view>
+<view class="raffleText" wx:else>
+  <view wx:if="{{languagePreference==0}}"> 
+    Raffles coming during IF!
+  </view>
+  <view wx:elif="{{languagePreference==1}}">
+    抽奖很快开始！
+  </view>
+  <view wx:else>
+    곧 추첨될 래플
+ </view>
+</view>
+<view class="raffleDesc">
+  <view wx:if="{{languagePreference==0}}"> 
+  Our sponsors have provided some amazing prizes worth over 200,000¥! You can buy tickets at the raffle ticket booth next to the cafeteria.
+  </view>
+  <view wx:elif="{{languagePreference==1}}"> 
+  我们的赞助商提供了一些价值超过200,000元的惊人奖品！ 您可以在自助餐厅旁边的抽奖售票处购买门票。
+  </view>
+  <view wx:else>
+  우리의 스폰서들이 200,000원 이상의 놀라운 상을 제공했습니다! 카페테리아 옆의 추첨 티켓 부스에서 티켓을   구입할 수 있습니다.
+  </view>
+</view>
+<view bindtap = "toRaffle" class = "redButton" style = "position: absolute; bottom:10px">
+            <view style="height:4px"></view>
+              <view wx:if="{{languagePreference==0}}"> 
+              See Prizes
+              </view>
+              <view wx:elif="{{languagePreference==1}}"> 
+              查看奖品
+              </view>
+              <view wx:else>
+              상품보기
+              </view>
+            </view>
+</view>
+
+      <view class = "center" style="position: relative; z-index:3; top: 10px; background: white; height: 120px; width: 100%; color: #392323; box-shadow: 0px 0px 5px #d3d3d3;" hidden="{{!show_announcement}}">
+        <view class = "typeOverlay">
+          <image style = "width: 100px; height:100px;" src = "/images/alert.png"/>
+        </view>
+        <view style="position:absolute; left:30rpx; top:35rpx; font-family:CO; font-size:20px; z-index: 5">
+          <view wx:if="{{languagePreference==0}}"> 
+          Announcement!
+          </view>
+          <view wx:elif="{{languagePreference==1}}"> 
+          公告!
+          </view>
+          <view wx:else>
+          공지사항
+          </view>
+        </view>
+        <view class = "center" style="position:absolute; left: 30rpx; width:500rpx; top:115rpx; font-family: CO; font-size:13px; z-index: 5">
+          {{announcementMessage}}
+        </view>
+      </view>
+    <view style="height:100px"/>
+    <include src="/pages/master_nav/master_nav.wxml"/>
+
+    </view>
+
+    <!--TUTORIAL Page-->
+    <view class="tutorialSlide" wx:if="{{show_tutorial}}">
+    <!-- <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo"> Authorize User Info</button> -->
+    <swiper
+          indicator-dots="{{true}}" autoplay="{{false}}" circular="{{false}}" vertical="{{false}}"
+        previous-margin="{{0}}px" next-margin="{{0}}px" class="tutorialSlide">
+          <block wx:for="{{tutorialSlides}}" wx:key="{{id}}" wx:for-index="i">
+            <swiper-item>
+            <view class="tutorialSlide" wx:if="{{i==6}}">
+            <view style="background:#FFFFFF; z-index: 0; position: fixed; top: 0px; right: 0px; width: 100%; height: 100%">
+            </view>
+            <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/logo.png" style="z-index: 1; position: fixed; top: 25%; right: 175rpx; width: 400rpx; height: 400rpx">
+    </image>
+            <button open-type="getUserInfo" class="finishb" bindtap="tutorial">Let's go!</button>
+            </view>
+            <view class="tutorialSlide" wx:elif="{{i==0}}">
+                <button open-type="getUserInfo" bindtap="tutorial" style="color: #FFFFFF; z-index: 50; position: fixed; top: 20rpx; right: 20rpx; width: 200rpx; height: 100rpx;" >Skip</button>
+                <view>
+                  <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/tutorial/0.jpg" style="z-index: 1; position: fixed; top: 0px; right: 0px; width: 100%; height: 100%">
+    </image>
+                </view>
+                <view style="color: #FFFFFF; z-index: 100; position: fixed; bottom: 0px; right:0px; width: 500rpx; height:100rpx;">Swipe to learn how</view>
+            </view>
+            <view class="tutorialSlide" wx:elif="{{i==1}}" style= "background: #FFFFFF">
+              <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/tutorial/1.jpg" style="z-index: 1; position: fixed; top: 25%; right: 0px; width: 750rpx; height: 750rpx">
+    </image>
+            </view>
+            <view class="tutorialSlide" wx:elif="{{i==2}}" style= "background: #FFFFFF">
+              <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/tutorial/2.jpg" style="z-index: 1; position: fixed; top: 25%; right: 0px; width: 750rpx; height: 750rpx">
+    </image>
+            </view>
+            <view class="tutorialSlide" wx:elif="{{i==3}}" style= "background: #FFFFFF">
+              <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/tutorial/3.jpg" style="z-index: 1; position: fixed; top: 25%; right: 0px; width: 750rpx; height: 750rpx">
+    </image>
+            </view>
+            <view class="tutorialSlide" wx:elif="{{i==4}}" style= "background: #FFFFFF">
+              <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/tutorial/4.jpg" style="z-index: 1; position: fixed; top: 25%; right: 0px; width: 750rpx; height: 750rpx">
+    </image>
+            </view>
+            <view class="tutorialSlide" wx:elif="{{i==5}}" style= "background: #FFFFFF">
+              <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/tutorial/settings.jpg" style="z-index: 1; position: fixed; top: 25%; right: 0px; width: 750rpx; height: 750rpx">
+    </image>
+            </view>
+            </swiper-item>
+          </block>
+        </swiper>
+    </view>
   </view>
 </view>

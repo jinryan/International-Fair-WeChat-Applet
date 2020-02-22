@@ -57,9 +57,9 @@
 }
 
 .right_arrow{
-  position: relative;
-  left: 600rpx;
-  top: -74rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 30rpx;
   width:40rpx;
   height: 40rpx;
 }
@@ -72,6 +72,21 @@
   height:70rpx;
 }
 
+.settings_icon2{
+  position: relative;
+  top: -60rpx;
+  left: 15rpx;
+  width:80rpx;
+  height:66rpx;
+}
+
+.settings_icon3{
+  position: absolute;
+  top: 10rpx;
+  left: 15rpx;
+  width:80rpx;
+  height:80rpx;
+}
 .switch{
   position:relative;
   left: 548rpx;

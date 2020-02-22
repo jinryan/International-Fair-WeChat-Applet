@@ -1,6 +1,14 @@
+<!-- <form bindsubmit="formSubmit" bindreset="formReset">
+  编写一个订单号
+  <input name="orderid" placeholder="随便写一个订单号" />
+  订单总价，单位（分）
+  <input name="money" placeholder="随便写一个订单总价" />
+  <button form-type="submit" type="primary">提交订单</button>
+</form> -->
+
 <view>
 <image
-src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
 class = "header_alt">
 </image>
 </view>
@@ -8,16 +16,14 @@ class = "header_alt">
 class = "filler">
 </view>
 
-<view style = "height:20rpx"></view>
-
-<view class = "centerHeader" style = "font-family: CBL">
-THE SHOP
+<view class = "centerHeader" style = "font-family: CBO">
+Current Price: 1 Eaglebuck = {{ticketPrice}} RMB
 </view>
 
 <view style = "height:20rpx"></view>
 
 <view>
-<image class = "ticketEagle" src="https://bluepiglet30.github.io/IFfilehost/TicketEagle.png"></image>
+<image class = "ticketEagle" src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/TicketEagle.png"></image>
 </view>
 
 <view style = "height:30rpx"></view>
@@ -25,34 +31,22 @@ THE SHOP
 <view class = "center">
 <div class="row">
   <div class="column">
-      <image style = "right:-10px" class = "buyTicket" data-tkt="{{tenTicket}}" bindtap="update" src="https://bluepiglet30.github.io/IFfilehost/ten.png"></image>
+      <image style = "right:-10px" class = "buyTicket" data-tkt="{{tenTicket}}" bindtap="update" src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/ten.png"></image>
       <view style = "height:10rpx"></view>
-      <image style = "right:-10px" class = "buyTicket" data-tkt="{{twentyTicket}}" bindtap="update" src="https://bluepiglet30.github.io/IFfilehost/twenty.png"></image>
+      <image style = "right:-10px" class = "buyTicket" data-tkt="{{twentyTicket}}" bindtap="update" src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/twenty.png"></image>
   </div>
 
   <div class="column">
-      <image style = "left:5px" class = "buyTicket" data-tkt="{{fiftyTicket}}" bindtap="update" src="https://bluepiglet30.github.io/IFfilehost/fifty.png"></image>
+      <image style = "left:5px" class = "buyTicket" data-tkt="{{fiftyTicket}}" bindtap="update" src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/fifty.png"></image>
       <view style = "height:10rpx"></view>
-      <image style = "left:5px" class = "buyTicket" data-tkt="{{hundredTicket}}" bindtap="update" src="https://bluepiglet30.github.io/IFfilehost/hundred.png"></image>
+      <image style = "left:5px" class = "buyTicket" data-tkt="{{hundredTicket}}" bindtap="update" src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/hundred.png"></image>
   </div>
 </div>
 </view>
 
-<!-- <form 
-    bindsubmit='update'>
+<view hidden = "{{!buying}}" style="position: fixed; width:100%; height:{{useableHeight+80}}px; z-index:10; background:grey; opacity: 0.5"/>
 
-  <input 
-      name="number" 
-      type="number"
-      placeholder="How many tickets you want to add?">
-  </input>
-
-  <button 
-      form-type='submit'>
-    Submit
-  </button>
-
-</form> -->
-<!-- <view hidden="{{!msg_show}}">Please enter a valid number of tickets!</view> -->
-<!-- 
-<include src="/pages/master_nav/master_nav.wxml"/> -->
+<view hidden = "{{!buying}}" class = "center" style="position: fixed; top: {{useableHeight/2-80}}px; left: 93.75rpx; z-index: 15; background: white; border-radius: 15px; width: 75%; height: 200rpx">
+  <view style="height:70rpx"/>
+  <view class = "center" style="font-family: CO; font-size:20px; text-align: center; opacity: 1"> Purchasing... </view>
+</view>

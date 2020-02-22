@@ -1,9 +1,10 @@
-<!-- <button open-type="getUserInfo" lang="en" bindtap="clout" bindgetuserinfo="onGotUserInfo">Push Eaglebucks</button>
+    <view bindtap= "toSettings" style="z-index: 15; position: fixed; top: 0px; right: 0px; width: 100rpx; height: 100rpx;">
+    <image src="/images/setting.png" style="width:50rpx; height:50rpx; top: 26rpx; right:20rpx; position:fixed;"/>
+    </view>
 
-<button bindtap="gucci">Pull Eaglebucks</button> -->
 <view>
 <image
-src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
 class = "header_alt">
 </image>
 
@@ -11,29 +12,28 @@ class = "header_alt">
 
 </view>
   <view style ="height:{{height/40+nav_height*0.8-40}}px"></view>
-  <!-- Ticket Sprites -->
   <view wx:if="{{myEaglebuck==0}}">
   <image
-  src="https://bluepiglet30.github.io/IFfilehost/Ticket1.png" class="ticketSprite" style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Ticket1.png" class="ticketSprite" style="height: {{height/2}}px; width: {{height/2}}px;"></image>
   </view>
 
   <view wx:elif="{{myEaglebuck<=10}}">
   <image
-  src="https://bluepiglet30.github.io/IFfilehost/Ticket2.png" class="ticketSprite" style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+  src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Ticket2.png" class="ticketSprite" style="height: {{height/2}}px; width: {{height/2}}px;"></image>
   </view>
 
   <view wx:elif="{{myEaglebuck<=100}}">
   <image
-  src="https://bluepiglet30.github.io/IFfilehost/Ticket3.png" class="ticketSprite"style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+  src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Ticket3.png" class="ticketSprite"style="height: {{height/2}}px; width: {{height/2}}px;"></image>
   </view>
 
   <view wx:elif="{{myEaglebuck<=499}}">
   <image
-  src="https://bluepiglet30.github.io/IFfilehost/Ticket4.png" class="ticketSprite"style="height: {{height/2}}px; width: {{height/2}}px;"></image>
+  src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Ticket4.png" class="ticketSprite"style="height: {{height/2}}px; width: {{height/2}}px;"></image>
   </view>
 
   <view wx:else>
-  <image src="https://bluepiglet30.github.io/IFfilehost/Ticket5.png" class="ticketSprite"style="height: {{height/2.2}}px; width: {{height/2.2}}px;"></image>
+  <image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Ticket5.png" class="ticketSprite"style="height: {{height/2.2}}px; width: {{height/2.2}}px;"></image>
   </view>
 
   <view wx:if="{{myEaglebuck>499}}">
@@ -46,7 +46,7 @@ class = "header_alt">
         呀呀呀 好多鹰镑哦！亲，开发商送你一副小画画～～～
       </view>
       <view wx:else>
-        티켓 구입
+        오~~ 티켓이 많네요! 개발자 중 한 명이 만든 이 특별한 작품을 감상해 보십시오.
       </view>
   </view>
 </view>
@@ -55,12 +55,6 @@ class = "header_alt">
 
   <view class = "borderBox" style = "margin-top: -10px">
     <view style = "height:50rpx"></view>
-    <!-- <view 
-        id = "MyEagleBucks" 
-        class= "eaglebuck_display"
-        style="text-align: center; font-family:SAS; font-size:auto">
-    {{myEaglebuck}}
-    </view> -->
     <view
         class= "eaglebuck_display"
         style="text-align: center; font-family:CBO; margin-top: -20px; font-size:auto">
@@ -71,25 +65,20 @@ class = "header_alt">
         {{myEaglebuck}} 鹰镑
       </view>
       <view wx:else>
-        {{myEaglebuck}} kimchi
+        {{myEaglebuck}} 전자 티켓
       </view>
     </view>
   </view>
 
   <view style = "height:{{height/10}}px" wx:if="{{myEaglebuck<=499}}"></view>
     <view style = "height:{{height/15}}px" wx:if="{{myEaglebuck>499}}"></view>
-  <!-- 
-  <view wx:if="{{languagePreference == 0}}">  You have: {{myEaglebuck}} Eaglebucks
-  </view>
-  <view wx:elif="{{languagePreference == 1}}">你有: {{myEaglebuck}} Eaglebucks</view>
-  <view wx:elif="{{languagePreference == 2}}">korean</view> -->
-<div class="row" style = "position: relative; left: 140rpx; margin-top: -30px">
-  <div class="column">
+<div class="row" style = "position: relative; margin-top: -30px">
+  <div class="column" style = "margin-left: 120rpx;">
   <view bindtap= "spend_tickets" class="tickets">
-    <image src="/images/QR.png" style="left: 5rpx; width:95%; height: 100%;">
+    <image src="/images/QR.png" style="margin-left: 55rpx; width:95%; height: 100%;">
     </image>
     <view style= "height:0rpx"></view>
-    <view style= "color: black; font-size:14px; text-align: center; font-family:CO">
+    <view style= "color: black; font-size:14px; text-align: center; font-family:CO; margin-left: 90rpx">
       <view wx:if="{{languagePreference==0}}">
         Scan
       </view>
@@ -124,11 +113,41 @@ class = "header_alt">
 </div>
 
   <view bindtap= "club_info" hidden="{{boothHidden || boothUser==''}}">
-  <image src="/images/Plus.png" class="club">
+  <image src="/images/booth.png" class="club">
   </image>
   </view>
 
 
+<view hidden = "{{loggedIn}}" style="position: fixed; width:100%; height:{{useableHeight+80}}px; z-index:10; background:grey; opacity: 0.5"/>
+
+<view hidden = "{{loggedIn}}" class = "center" style="position: fixed; top: {{useableHeight/2-80}}px; left: 93.75rpx; z-index: 15; background: white; border-radius: 15px; width: 600rpx; height: 260rpx">
+  <view style="height:20rpx"/>
+  <view class = "center" style="font-family: CO; font-size:16px; text-align: center; opacity: 1"> 
+  <view wx:if="{{languagePreference==0}}" style="margin-top: 10rpx; width: 550rpx; margin-left: 25rpx">
+  Login before you use these functions.
+  Having trouble? Check your wifi and restart the app and wechat.
+  </view>
+  <view wx:elif="{{languagePreference==1}}" style="margin-top: 10rpx; width: 550rpx; margin-left: 25rpx">
+  使用这个功能之前需要登录。如有问题请从起小程序。
+  </view>
+  <view wx:else style="margin-top: 10rpx; width: 550rpx; margin-left: 25rpx">
+  다음 기능을 사용하기 전에 로그인이 필요합니다
+  </view>
+  <button class = "redButton" bindtap = "bottom_nav2" open-type="getUserInfo">
+  <view style="margin-top: -15rpx">
+    <view wx:if="{{languagePreference==0}}">
+    Login
+    </view>
+    <view wx:elif="{{languagePreference==1}}">
+    登录
+    </view>
+    <view wx:else>
+    로그인
+    </view>
+  </view>
+  </button>
+  </view>
+</view>
 <include src="/pages/master_nav/master_nav.wxml"/>
 
 

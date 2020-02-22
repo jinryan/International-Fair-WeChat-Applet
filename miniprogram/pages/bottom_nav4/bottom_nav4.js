@@ -48,8 +48,9 @@ const init = function () {
 Page({
   data: {
     nav_height: app.globalData.nav_height,
-    addTime: 100,
+    addTime: 10,
     barron: false,
+    scrollTop: 0,
   },
   
   onLoad: function () {
@@ -90,32 +91,31 @@ Page({
         console.log(app.globalData.schedule)
 
         this.setData({
-          scheduleArray: app.globalData.schedule
+          scheduleArray: app.globalData.schedule,
+          useableHeight: app.globalData.useableHeight-80,
+        })
+
+        var eventNum = 0
+
+        for (var i = 0; i < scheduleArray.length; i++) {
+          if (getDateTime() > scheduleArray[i].time) {
+            eventNum++
+          } else {
+            break;
+          }
+        }
+        console.log(eventNum)
+        var scrollAmount = eventNum * 145
+        this.setData({
+          scrollTop: scrollAmount
         })
       },
 
     })
   },
 
-  onReady: function () {
-    
-  },
-
-  onShow: function () {
-
-  },
-
-  onHide: function () {
-
-  },
-
-  onUnload: function () {
-
-  },
-
   onPullDownRefresh: function () {
     app.globalData.time = parseInt(getDateTime(), 10)
-
     this.setData({
       one: app.globalData.one,
       two: app.globalData.two,
@@ -124,6 +124,18 @@ Page({
       five: app.globalData.five,
       time: app.globalData.time,
     })
+    console.log(this.data.time)
+
+    var myThis = this
+    if (parseInt(getBarronTime()) < 5) {
+      myThis.setData({
+        barron: true
+      })
+    } else {
+      myThis.setData({
+        barron: false
+      })
+    }
 
     wx.cloud.callFunction({
       name: "pullstuff",
@@ -140,12 +152,108 @@ Page({
         console.log(app.globalData.schedule)
 
         this.setData({
-          scheduleArray: app.globalData.schedule
+          scheduleArray: app.globalData.schedule,
+          useableHeight: app.globalData.useableHeight - 80,
+        })
+
+        var eventNum = 0
+
+        for (var i = 0; i < scheduleArray.length; i++) {
+          if (getDateTime() > scheduleArray[i].time) {
+            eventNum++
+          } else {
+            break;
+          }
+        }
+        console.log(eventNum)
+        var scrollAmount = eventNum * 145
+        this.setData({
+          scrollTop: scrollAmount
+        })
+      },
+
+    })
+    wx.stopPullDownRefresh()
+  },
+
+  onShow: function () {
+
+  },
+
+  onHide: function () {
+
+  },
+
+  onUnload: function () {
+
+  },
+
+  onPullDownRefresh: function () {
+    app.globalData.time = parseInt(getDateTime(), 10)
+    this.setData({
+      one: app.globalData.one,
+      two: app.globalData.two,
+      three: app.globalData.three,
+      four: app.globalData.four,
+      five: app.globalData.five,
+      time: app.globalData.time,
+    })
+    console.log(this.data.time)
+
+    var myThis = this
+    if (parseInt(getBarronTime()) < 5) {
+      myThis.setData({
+        barron: true
+      })
+    } else {
+      myThis.setData({
+        barron: false
+      })
+    }
+
+    wx.cloud.callFunction({
+      name: "pullstuff",
+      data: {
+        field: "schedule"
+      },
+      fail: (res) => {
+        console.log(res)
+      },
+
+      success: (res) => {
+        var scheduleArray = res.result.data;
+        app.globalData.schedule = scheduleArray;
+        console.log(app.globalData.schedule)
+
+        this.setData({
+          scheduleArray: app.globalData.schedule,
+          useableHeight: app.globalData.useableHeight - 80,
+        })
+
+        var eventNum = 0
+
+        for (var i = 0; i < scheduleArray.length; i++) {
+          if (getDateTime() > scheduleArray[i].time) {
+            eventNum++
+          } else {
+            break;
+          }
+        }
+        console.log(eventNum)
+        var scrollAmount = eventNum * 145
+        this.setData({
+          scrollTop: scrollAmount
         })
       },
 
     })
   },
+
+  // tapMove: function (e) {
+  //   this.setData({
+  //     scrollTop: this.data.scrollTop + 10
+  //   })
+  // },
 
   onReachBottom: function () {
 
@@ -217,5 +325,10 @@ Page({
     app.globalData.five = 'C94731'
   },
   
+  toSettings: function () {
+    wx.navigateTo({
+      url: '/pages/settings/settings',
+    })
+  }
 })
 

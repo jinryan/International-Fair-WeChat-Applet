@@ -19,11 +19,23 @@ Page({
     height: 0,
     width: 0,
     boothUser: '',
+    loggedIn: app.globalData.loggedIn,
+    useableHeight: app.globalData.useableHeight
   },
 
-  onLoad: function () {
+  onPullDownRefresh: function () {
+    var myThis = this
+    wx.getUserInfo({
+      success: function (res) {
+        app.globalData.loggedIn = true
+        myThis.setData({
+          loggedIn: true,
+        })
+      }
+    })
     wx.cloud.init()
     this.setData({
+      loggedIn: app.globalData.loggedIn,
       myEaglebuck: app.globalData.myEaglebuck,
       one: app.globalData.one,
       two: app.globalData.two,
@@ -33,23 +45,39 @@ Page({
       languagePreference: app.globalData.languagePreference,
       boothHidden: app.globalData.boothHidden,
       boothUser: app.globalData.boothUser,
+      useableHeight: app.globalData.useableHeight,
     })
     console.log(this.data.boothHidden)
+    console.log("Logged In:")
+    console.log(this.data.loggedIn)
 
     wx.getSystemInfo({
       success: res => {
         this.setData({
-
           aspect_rat: res.safeArea.height / res.safeArea.width,
           height: res.safeArea.height - 80 - app.globalData.nav_height,
           width: res.safeArea.width,
         })
         console.log(this.data.aspect_rat)
       },
-    })
+    }),
 
-  },
-  onReady: function () {
+      wx.login({
+        success(res) {
+          if (res.code) {
+
+            wx.setStorage({
+              key: 'openID',
+              data: res.code
+            })
+            console.log(res.code)
+          } else {
+            wx.reLaunch({
+              url: '/pages/bottom_nav2/bottom_nav2',
+            })
+          }
+        }
+      })
     wx.cloud.init()
     console.log("within the pull function " + app.globalData.ID)
     wx.cloud.callFunction({
@@ -71,11 +99,125 @@ Page({
         })
       },
     })
+    wx.stopPullDownRefresh()
   },
+
+  onLoad: function (){
+    var myThis = this
+    wx.getUserInfo({
+      success: function (res) {
+        app.globalData.loggedIn = true
+        myThis.setData({
+          loggedIn: true,
+        })
+      }
+    })
+    wx.cloud.init()
+    this.setData({
+      loggedIn: app.globalData.loggedIn,
+      myEaglebuck: app.globalData.myEaglebuck,
+      one: app.globalData.one,
+      two: app.globalData.two,
+      three: app.globalData.three,
+      four: app.globalData.four,
+      five: app.globalData.five,
+      languagePreference: app.globalData.languagePreference,
+      boothHidden: app.globalData.boothHidden,
+      boothUser: app.globalData.boothUser,
+      useableHeight: app.globalData.useableHeight,
+    })
+    console.log(this.data.boothHidden)
+    console.log("Logged In:")
+    console.log(this.data.loggedIn)
+
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          aspect_rat: res.safeArea.height / res.safeArea.width,
+          height: res.safeArea.height - 80 - app.globalData.nav_height,
+          width: res.safeArea.width,
+        })
+        console.log(this.data.aspect_rat)
+      },
+    }),
+
+    wx.login({
+      success(res) {
+        if (res.code) {
+          
+          wx.setStorage({
+            key: 'openID',
+            data: res.code
+          })
+          console.log(res.code)
+        } else {
+          wx.reLaunch({
+            url: '/pages/bottom_nav2/bottom_nav2',
+          })
+        }
+      }
+    })
+    wx.cloud.init()
+    console.log("within the pull function " + app.globalData.ID)
+    wx.cloud.callFunction({
+      name: "pullstuff",
+      data: {
+        _id: app.globalData.ID,
+        field: "test"
+      },
+      fail: (res) => {
+        console.log(res)
+      },
+      success: (res) => {
+        var retInfo = res.result.data[0]
+        console.log(retInfo)
+        app.globalData.myEaglebuck = retInfo.eaglebuck
+        console.log(retInfo.username + " has " + retInfo.eaglebuck + " Eaglebucks")
+        this.setData({
+          myEaglebuck: app.globalData.myEaglebuck,
+        })
+      },
+    })
+
+  },
+
+  // onReady: function () {
+  //   wx.cloud.init()
+  //   console.log("within the pull function " + app.globalData.ID)
+  //   wx.cloud.callFunction({
+  //     name: "pullstuff",
+  //     data: {
+  //       _id: app.globalData.ID,
+  //       field: "test"
+  //     },
+  //     fail: (res) => {
+  //       console.log(res)
+  //     },
+  //     success: (res) => {
+  //       var retInfo = res.result.data[0]
+  //       console.log(retInfo)
+  //       app.globalData.myEaglebuck = retInfo.eaglebuck
+  //       console.log(retInfo.username + " has " + retInfo.eaglebuck + " Eaglebucks")
+  //       this.setData({
+  //         myEaglebuck: app.globalData.myEaglebuck,
+  //       })
+  //     },
+  //   })
+  // },
   //seperate button handling
   onGotUserInfo: function (e) {
+    myThis = this
     const app = getApp()
     app.globalData.userInfo = e.detail.userInfo.nickName
+    app.globalData.loggedIn = true
+    console.log("Logged In?")
+    console.log(app.globalData.loggedIn)
+    myThis.setData({
+      loggedIn: true
+    })
+    wx.reLaunch({
+      url: '/pages/bottom_nav2/bottom_nav2',
+    })
   },
 
   // clout: function () {
@@ -253,23 +395,8 @@ Page({
   },
 
   club_info: function () {
-    wx.cloud.init()
-    wx.cloud.callFunction({
-      name: "pullstuff",
-      data: {
-        field: "booths"
-      },
-      fail: (res) => {
-        console.log(res.result)
-      },
-      success: (res) => {
-        app.globalData.clubData = res.result.data
-        console.log("redirecting to club infopage")
-        console.log(app.globalData.clubData)
-        wx.navigateTo({
-          url: '/pages/bottom_nav2/Club_info/Club_info',
-        })
-      },
+    wx.navigateTo({
+      url: '/pages/bottom_nav2/Club_info/Club_info',
     })
   },
 
@@ -284,4 +411,10 @@ Page({
       url: '/pages/tickets/transfer/transfer',
     })
   },
+
+  toSettings: function () {
+    wx.navigateTo({
+      url: '/pages/settings/settings',
+    })
+  }
 })

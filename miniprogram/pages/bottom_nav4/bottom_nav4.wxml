@@ -1,7 +1,11 @@
+    <view bindtap= "toSettings" style="z-index: 10; position: fixed; top: 0px; right: 0px; width: 100rpx; height: 100rpx;">
+    <image src="/images/setting.png" style="width:50rpx; height:50rpx; top: 26rpx; right:20rpx; position:fixed;"/>
+    </view>
+    
 <view hidden = "{{barron}}">
   <view>
     <image
-    src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
     class = "header_alt">
     </image>
     <view class = "filler"> </view> 
@@ -9,9 +13,10 @@
 
   <view>
 
-
+  <scroll-view scroll-y style="position: fixed; height: {{useableHeight}}px;" scroll-top="{{scrollTop-5}}">
+  <view style="position: absolute; z-index: 10; width:100%; height: 5px; background:green; top: {{scrollTop-5}}px; opacity: 0.7"/>
   <view wx:for="{{scheduleArray}}" wx:for-index="i">
-    <view>
+    <view wx:if = "{{time-addTime > scheduleArray[i].time}}" style>
       <view wx:if = "{{scheduleArray[i].type == 0}}" class = "typeOverlay">
         <image style = "width: 100px; height:100px;" src = "/images/perf.png"/>
       </view>
@@ -19,31 +24,46 @@
       <view wx:if = "{{scheduleArray[i].type == 1}}" class = "typeOverlay">
         <image style = "width: 100px; height:100px;" src = "/images/raffle.png"/>
       </view>
+      <view wx:if = "{{scheduleArray[i].type == 2}}" class = "typeOverlay">
+        <image style = "width: 100px; height:100px;" src = "/images/party.png"/>
+      </view>
+    </view>
+
+    <view wx:else>
+      <view wx:if = "{{scheduleArray[i].type == 0}}" class = "typeOverlay2">
+        <image style = "width: 100px; height:100px;" src = "/images/perf.png"/>
+      </view>
+
+      <view wx:if = "{{scheduleArray[i].type == 1}}" class = "typeOverlay2">
+        <image style = "width: 100px; height:100px;" src = "/images/raffle.png"/>
+      </view>
+      <view wx:if = "{{scheduleArray[i].type == 2}}" class = "typeOverlay2">
+        <image style = "width: 100px; height:100px;" src = "/images/party.png"/>
+      </view>
+    </view>
+
       <view style = "z-index:5">
         <view class = "scheduleTime" style = "font-family:COI">
       
           <view wx:if = "{{time-addTime > scheduleArray[i].time}}" class = "circle" style = "background-color: grey"/>
           <view wx:elif = "{{time+addTime < scheduleArray[i].time}}"    class = "circle"/>
-          <view wx:else class = "circle" style = "background-color: blue"/>
-
-          <!-- <view style="height:46rpx"/>
-            <text style= "color: black;">
-            {{scheduleArray[i].showtime}}
-            </text> -->
-          </view>
+          <view wx:else class = "circle" style = "background-color: red"/>
+      </view>
       
           <view class = "scheduleInfo">
             <view wx:if = "{{time-addTime > scheduleArray[i].time}}" style = "color: rgb(120,120,120);">
-              <view style = "margin-top:26rpx; margin-left:20rpx;     font-family:CO" >
+              <view style="height:10px"/>
+              <view style = "margin-left:20rpx;font-family:CO; width: 60%" >
                 <view style= "font-size:20px">
-                {{scheduleArray[i].showtime}}: {{scheduleArray[i]._id}}
+                {{scheduleArray[i]._id}}
                 </view>
                 <view style = "height: 5px;"/>
-                <view>
+                <view style = "color: green; opacity: 0.6">
+                {{scheduleArray[i].showtime}}
                 {{scheduleArray[i].location}}
                 </view>
                 <view style = "height: 5px;"/>
-                <view style= "font-size:14px">
+                <view style= "font-size:13px">
                 {{scheduleArray[i].description}}
                 </view>
 
@@ -51,16 +71,18 @@
             </view>
             
             <view wx:else>
-              <view style = "margin-top:26rpx; margin-left:20rpx;     font-family:CO" >
+              <view style="height:10px"/>
+              <view style = "margin-left:20rpx; font-family:CO; width: 60%" >
                 <view style= "font-size:20px">
-                {{scheduleArray[i].showtime}}: {{scheduleArray[i]._id}}
+                {{scheduleArray[i]._id}}
                 </view>
                 <view style = "height: 5px;"/>
-                <view>
+                <view style = "color: green">
+                {{scheduleArray[i].showtime}}
                 {{scheduleArray[i].location}}
                 </view>
                 <view style = "height: 5px;"/>
-                <view style= "font-size:14px">
+                <view style= "font-size:13px">
                 {{scheduleArray[i].description}}
                 </view>
 
@@ -68,23 +90,25 @@
             </view>
           </view>
     
-          <view style="height:255rpx"/>
+          <view style="height:145px"/>
           </view>
         </view>
+        <view style="height:20px"/>
+      </scroll-view>
       </view>
+      <view style="height:140px"/>
     </view>
-    <view style="height:140px"/>
-  </view>
+
+<!-- <button size="mini" bindtap="tapMove">click me to scroll</button> -->
 
 <view hidden = "{{!barron}}">
   <view>
-    <image
-    src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+    <image  src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
     class = "header_alt">
     </image>
     <view class = "filler"> </view> 
   </view>
-  <image class = "barron" src = "https://bluepiglet30.github.io/IFfilehost/BarronEgg.jpeg">
+  <image class = "barron" src = "cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/BarronEgg.jpeg">
   </image>
   <button style = "background: grey" bindtap="bye">Bye</button>
 </view>

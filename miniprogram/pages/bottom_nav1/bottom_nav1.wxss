@@ -55,6 +55,12 @@
   z-index:5
 } */
 
+.location_pin{
+  position: absolute;
+  height: 53px;
+  width: 35px;
+  z-index: 2;
+}
 .popup{
   width: 600rpx;
   height: 400rpx;

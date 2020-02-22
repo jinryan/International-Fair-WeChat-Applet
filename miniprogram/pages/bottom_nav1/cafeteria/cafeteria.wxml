@@ -5,17 +5,34 @@
     friction="100"
     damping="50">
     <image 
-          src="https://bluepiglet30.github.io/IFfilehost/cafeteria2.png"
+          src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/cafeteria.png"
           style='height:500px; width:755px;'>
       </image>   
     </movable-view>
   </movable-area>
 
-<view style="position:fixed; height:600rpx; width:600rpx; top:300rpx; left:75rpx" hidden="{{popup_hidden}}">
+<!-- <view style="position:fixed; height:600rpx; width:600rpx; top:300rpx; left:75rpx" hidden="{{popup_hidden}}">
     
         <canvas canvas-id="popupCanvas" class="popup" bindtap="coords"> 
         <button bindtap="close_popup" class="button">close</button>
         <button bindtap="to_tickets" class="ticket_button">buy tickets</button>
-        <!-- {{popup_name}} -->
+        test {{popup_name}}
     </canvas>
+
+    </view> -->
+
+<view hidden="{{popup_hidden}}">
+  <view class = "popup">
+    <view bindtap="close_popup" class="button">
+    <image src="/images/x.png" style="opacity: 0.5; position: absolute; height:40rpx; width: 40rpx;top:10rpx;right:5rpx"></image>
+    </view> 
+    <view class = "popup_content">
+      <view style="font-family:CBO; font-size; 16; color: rgb(135,0,0)">
+        Ticket Booth
+      </view>
+      <view style="font-family:CO; font-size; 13;">
+        You can buy physical tickets here, or new digital ones on this applet!
+      </view>
     </view>
+    </view>
+</view>

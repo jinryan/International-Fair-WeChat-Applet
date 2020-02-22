@@ -1,5 +1,56 @@
-/* miniprogram/pages/settings/login/login.wxss */
-.entry_field{
-  position: relative;
-  height: 100rpx;
+#un {
+  margin: 75rpx 0px;
+}
+
+.entry_field{  
+    width: 100%;
+}
+
+.textfield {
+    display: block;
+    margin: 0 auto;
+    height: 40px;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-family: CO;
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+button {
+  font-family: COI;
+  width: 40%; 
+  border-radius: 5px;
+  border: 1px solid rgba(220, 0, 0, 1);
+  text-align: center; 
+  color: #c4000a;
+  text-size: 15px;
+}
+
+#errm {
+  margin-top: 5px;
+  color: red;
+  font-family: CO;
+  font-weight: 800;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.t {
+  font-family: CO;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 10%;
+  display: block;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  font-family: CBO;
+  font-size: 18px;
+  text-align: center;
 }

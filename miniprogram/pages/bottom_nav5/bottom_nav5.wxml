@@ -1,116 +1,89 @@
+<!--miniprogram/pages/bottom_nav5/bottom_nav5.wxml-->
+    <view bindtap= "toSettings" style="z-index: 10; position: fixed; top: 0px; right: 0px; width: 100rpx; height: 100rpx;">
+    <image src="/images/setting.png" style="width:50rpx; height:50rpx; top: 26rpx; right:20rpx; position:fixed;"/>
+    </view>
+
 <view>
-<image
-src="https://bluepiglet30.github.io/IFfilehost/Header.png"
-class = "header_alt">
-</image>
-</view>
-
-<view
-class = "filler">
-</view>
-
-<view class = "center" bindtap="toMenu">
-      <image data-nam="{{'American'}}"  class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/American.png"/>
-      <view class="button_text">American</view>
-      <image src="/images/right_arrow.png" class="right_arrow"></image>
-</view>
-
-<view class = "center" bindtap="toMenu">
-    <image data-nam="{{'European'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/European.png"></image>
-          <view class="button_text">European</view>
-    <image src="/images/right_arrow.png" class="right_arrow"></image>
-</view>
-
-<view class = "center" bindtap="toMenu">
-    <image data-nam="{{'Korean'}}"bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Korean.png"></image>
-          <view class="button_text">Korean</view>
-    <image src="/images/right_arrow.png" class="right_arrow"></image>
-</view>
-
-<view class = "center" bindtap="toMenu">
-    <image data-nam="{{'Chinese'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Chinese.png"></image>
-          <view class="button_text">Chinese</view>
-    <image src="/images/right_arrow.png" class="right_arrow"></image>
-</view>
-
-<view class = "center" bindtap="toMenu">
-    <image data-nam="{{'Indian'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Indian.png"></image>
-          <view class="button_text">Indian</view>
-    <image src="/images/right_arrow.png" class="right_arrow"></image>
-</view>
-
-
-<!-- <div class="row">
-  <div class="column">
-    <image data-nam="{{'American'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/American.png"></image>
-    <image data-nam="{{'European'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/European.png"></image>
-    <image data-nam="{{'Korean'}}"bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Korean.png"></image>
-  </div>
-  <div class="column">
-    <image data-nam="{{'Chinese'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Chinese.png"></image>
-    <image data-nam="{{'Indian'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Indian.png"></image>
-    <image data-nam="{{'Korean'}}" bindtap="toMenu" class = "foodImg" src="https://bluepiglet30.github.io/IFfilehost/Korean.png"></image>
-  </div>
-</div> -->
-
-<!-- 
-<div 
-    class="hero-image" 
-    bindtap="menu_1" 
-    style='background-image:url("https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg");'>
-
-  <div 
-      class="hero-text" style="font-family:CB">
-    American
-  </div>
-
-</div>
-
-<div 
-    class="hero-image" 
-    bindtap="menu_2" 
-    style='background-image:url("https://theistanbulinsider.com/wp-content/uploads/2013/12/turkish-food.jpg");'>
-
-  <div 
-      class="hero-text" style="font-family:CB">
-    Turkish
-  </div>
-
-</div>
-
-<div 
-    class="hero-image" 
-    bindtap="menu_3" 
-    style='background-image:url("https://www.hotelgift.com/wp-content/uploads/2019/01/GettyImages-636633542.jpg");'>
-
-  <div 
-      class="hero-text" style="font-family:CB">
-    Korean
-  </div>
-
-</div>
-
-<div 
-    class="hero-image" 
-    bindtap="menu_1" 
-    style='background-image:url("https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg");'>
-
-  <div 
-      class="hero-text" style="font-family:CB">
-    Chinese
-  </div>
-
-</div> -->
-
-<!-- <view class="container">
-  <image src="https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg" class="image">
+  <image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
+  class = "header_alt">
   </image>
-  <view>
-  <image src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" class="overlay">
-  </image>
+  <view class = "filler"> </view> 
+</view>
+
+<!-- <view style="font-family: CBO; text-size: 20px; color: red">This feature is temporarily unavailable</view> -->
+
+<view class="whiteContainer" bindtap = "menu" style="height:550rpx">
+  <image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs/food.jpg" class="containerImage"/>
+  <view class="containerText">
+    <view class="headerText">
+    Food
+    </view>
+    <view style="margin-top: 10rpx">
+    Come visit the cultural food booths! The amazing SAS PX parents have prepared menus from more than 10 cuisines from around the world. Sample dishes from China, Korea, Europe, the US and more!
+    </view>
   </view>
-</view> -->
+  <view class="redButton">
+  <view style="height:10rpx"/>
+  Menus
+  </view>
+</view>
 
-<!-- ./korean.png -->
-<view style="height:200px"></view>
+<view class="whiteContainer" bindtap = "toGame" style="height:550rpx">
+  <view class="containerImage">
+    <image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs/booths.jpg" style="height:520rpx; width: 420rpx"/>
+  </view>
+
+  <view class="containerText">
+    <view class="headerText">
+    Games
+    </view>
+    <view style="margin-top: 10rpx">
+    Our high school students have designed and created 70+ fun game booths that can satisfy all of your cravings. Your visit is sure to be action packed. Games include dunk tanks, ball tosses, and more!
+    </view>
+  </view>
+  <view class="redButton">
+  <view style="height:10rpx"/>
+  Explore
+  </view>
+</view>
+
+<view class="whiteContainer" bindtap = "toSponsors" style="height:550rpx">
+  <view class="containerImage">
+    <image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs/sponsor.jpg" style="height:520rpx; width: 420rpx"/>
+  </view>
+<view class="containerText">
+  <view class="headerText">
+  Sponsors
+  </view>
+  <view style="margin-top: 10rpx">
+  We would like to thank the amazing sponsors that made International Fair happen!
+  </view>
+  </view>
+  <view class="redButton">
+  <view style="height:10rpx"/>
+  View
+  </view>
+</view>
+
+<view class="whiteContainer" bindtap = "toVendor" style="height:550rpx">
+  <view class="containerImage">
+    <image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs/vendor.jpg" style="height:520rpx; width: 420rpx"/>
+  </view>
+
+<view class="containerText">
+  <view class="headerText">
+  Vendors
+  </view>
+  <view style="margin-top: 10rpx">
+  Visit the vendor and student marketplace booths next to the cafeteria and middle school! They offer a variety of interesting services and products from robots to designer apparel!
+  </view>
+  </view>
+  <view class="redButton">
+  <view style="height:10rpx"/>
+  Explore
+  </view>
+</view>
+
+<view style="height: 100px"/>
 <include src="/pages/master_nav/master_nav.wxml"/>

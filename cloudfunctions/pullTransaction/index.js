@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
   return await c.collection(event.field).where({
     boothName: event.boothName
   })
-  console.log(event.num)
+  // console.log(event.num)
     .limit(parseInt(event.num))
     .orderBy('time', 'desc')
     .get()

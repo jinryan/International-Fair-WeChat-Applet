@@ -11,10 +11,17 @@
   z-index: 5;
 }
 
-.confirmationImage{
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* .confirmationImage{
   top: 580px;
   left: 200px;
-}
+} */
 
 .filler{
   display: block;
@@ -27,18 +34,33 @@
   display: block;
   position: relative;
   text-align: center;
-  top: 30rpx;
 }
 
 .YouNowHave {
-  position: relative;
+  display: block;
   text-align: center;
-  top: 10rpx;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.filler1{
+.header_alt{
   display: block;
-  background-color: #f2f2f2;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
-  height: 20px;
+  height: 80px;
+  position: fixed;
+  z-index: 5;
+  box-shadow: 0px 0px 5px #808080;
+}
+
+button {
+  font-family: COI;
+  width: 40%; 
+  border-radius: 5px;
+  border: 1px solid rgba(220, 0, 0, 1);
+  text-align: center; 
+  color: #c4000a;
+  font-size: 15px;
 }

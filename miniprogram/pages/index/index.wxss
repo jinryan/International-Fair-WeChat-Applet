@@ -5,7 +5,19 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow-x: false;
 }
+/* 
+button {
+  font-family: COI;
+  border: 1px solid rgba(220, 0, 0, 1);
+  text-align: center; 
+  color: #c4000a;
+  width: 120px; 
+  height: 30px; 
+  background:white; 
+  border-radius: 15px; 
+} */
 
 .userinfo, .uploader, .tunnel {
   margin-top: 40rpx;
@@ -26,7 +38,7 @@ page {
   top: 26rpx;
   right:20rpx;
   position:fixed;
-  z-index: 6
+  z-index: 100;
 }
 .userinfo-avatar {
   width: 100rpx;
@@ -50,6 +62,33 @@ page {
 
 .userinfo-nickname::after {
   border: none;
+}
+
+.raffle{
+  position: relative;
+  height: 320px;
+  width: 100%;
+  box-shadow: 0px 0px 5px #d3d3d3;
+  background-color: white;
+}
+
+.raffleText{
+  position: relative;
+  height: 30px;
+  width: 690rpx;
+  left: 30rpx;
+  margin-top: 20px;
+  font-family: CO;
+  font-size: 20px;
+}
+
+.raffleDesc{
+  position: relative;
+  width: 690rpx;
+  left: 30rpx;
+  top: 10px;
+  font-family: CO;
+  font-size: 14px;
 }
 
 .uploader, .tunnel {
@@ -264,7 +303,7 @@ page {
   width: 100%;
   height: 80px;
   position: fixed;
-  z-index: 5;
+  z-index: 50;
   box-shadow: 0px 0px 5px #808080;
 }
 
@@ -272,7 +311,7 @@ page {
   display: block;
   background-color: #f2f2f2;
   width: 100%;
-  height: 90px;
+  height: 80px;
 }
 
 .ticket_count{
@@ -283,9 +322,12 @@ page {
 }
 
 .ticketBG{
-  height:330rpx;
-  width:310rpx;
-  /* opacity: 0.8; */
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  height:220rpx;
+  width:220rpx;
+  opacity: 0.8;
 }
 
 /* .information{
@@ -363,19 +405,29 @@ page {
   display: block;
   margin-left:auto;
   margin-right:auto;
-  height: 180px;
+  height: 100%;
   background-color: white; 
   box-shadow: 0px 0px 5px #d3d3d3;
 }
 .redButton{
-position: inline; margin-left: 5px; width: 120px; height: 30px; background:white; border-radius: 15px; text-align: center; color: #c4000a; font-family: COI; border: 1px solid rgba(220, 0, 0, 1)
+position: absolute; 
+left: 30rpx;
+bottom: 10px; 
+width: 120px; 
+height: 30px; 
+background:white; 
+border-radius: 15px; 
+text-align: center; 
+color: #c4000a; 
+font-family: COI; 
+border: 1px solid rgba(220, 0, 0, 1)
 }
 .tutorial_text{
   display: block;
   border-radius: 10px;
   width: 80%;
   height: 200rpx;
-  margin-top:auto;
+  /* margin-top:auto; */
   margin-bottom:auto;
   margin-left: auto;
   margin-right: auto;
@@ -399,6 +451,7 @@ position: inline; margin-left: 5px; width: 120px; height: 30px; background:white
   position: absolute;
   width: 100%;
   height:100%;
+  color: #FFFFFF;
 }
 
 img {vertical-align: middle;}
@@ -501,12 +554,15 @@ i {
 
 .finishb {
 
-  position: relative;
+  position: fixed;
+  z-index: 2;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  top: 50%;
+  top: 60%;
+  left:25%;
   width: 50%;
+  height: 90rpx;
   margin-top: 20px;
   font-family: CO;
   font-size: 16px;
@@ -564,4 +620,14 @@ height: 100%;
   opacity: 0.8;
   left: 530rpx;
   margin-top: 10px;
+}
+
+.cardImage{
+  position: relative;
+  width: 712rpx;
+  left: 19rpx;
+  top: 19rpx;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
 }

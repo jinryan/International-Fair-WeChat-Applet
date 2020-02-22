@@ -1,15 +1,20 @@
-<!-- <view
-class = "filler">
-</view> -->
-
-<view style="width:350rpx; height:350rpx; margin-left: 200rpx">
-<image src= "/images/checkmark.png" style="width:100%; height: 100%; top: 20rpx; position: relative;"> </image>
+<view>
+    <image
+    src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
+    class = "header_alt">
+    </image>
 </view>
 
-<view class="PaymentConf" style="font-family:CO;">
-<text> Payment Confirmation</text>
-</view>
+<view style="height: {{useableHeight/4}}px"/>
 
+<view class="PaymentConf" style="font-family:CO; font-size: 25px; color: #392323">
+<text>Payment Confirmed
+Time: {{curTime}}</text>
+</view>
+<view style="height:10px"/>
+<image src= "/images/checkmark.png" class = "center" style="width:200rpx; height: 200rpx; position: relative;"/>
+
+<view style="height:20rpx"></view>
 <view wx:if="{{showTransfer}}"> 
 
 <view class="YouNowHave" style="font-family:CO;">
@@ -18,27 +23,13 @@ class = "filler">
   </text>
 </view>
 </view>
-<view class = "filler1"></view>
 
-<view class="YouNowHave" style="font-family:CO;">{{curTime}}</view>
-
-<view class = "filler1"></view>
-<view class = "filler1"></view>
-
-<view style = "width:175rpx; height:20rpx;">
-<image src= "/images/greenRectangle.png" style="width:400rpx;height:20rpx;left: 175rpx; position: fixed;"> </image>
-</view>
-
-<view class = "filler1"></view>
-<view class = "filler1"></view>
 <view class="YouNowHave"
     id = "MyEagleBucks" 
-    style="font-size: 30px; color: Green; font-family:CO;">
-  You now have: {{myEaglebuck}} Eaglebucks
+    style="font-size: 30px; color: #392323; font-family:CO;">
+  <text>New Balance:
+  {{myEaglebuck}} Eaglebucks</text>
 </view>
 
-<view class = "filler1"></view>
-<button 
-    bindtap="tickets">
-  OK
-</button>
+<view style="height:30rpx"></view>
+<button bindtap="bottom_nav2">Back</button>

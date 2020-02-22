@@ -7,10 +7,11 @@ Page({
    * Page initial data
    */
   data: {
-    ticket_choices: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    ticket_choices: [2,5,10,20,50,100,"Unlimited"],
     avatarUrl: '/images/user_unlogin.png',
     userInfo: {},
     logged: false,
+    boothUser: app.globalData.boothUser
   },
   
   toLanguage: function(){
@@ -37,10 +38,18 @@ Page({
     })
   },
   boothLogin: function(){
-    app.globalData.boothHidden = false
-    wx.navigateTo({
-      url: 'login/login'
-    })
+    console.log("Booth User")
+    console.log(app.globalData.boothUser)
+    if(app.globalData.boothUser == ""){
+      app.globalData.boothHidden = false
+      wx.navigateTo({
+        url: 'login/login'
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/bottom_nav2/Club_info/Club_info'
+      })
+    }
   },
   changeMax: function(e) {
     console.log(e.detail.value)
@@ -53,6 +62,20 @@ Page({
       url: 'credits/credits',
     })
   },
+
+  toTutorial: function () {
+    app.globalData.show_tutorial = true
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
+  },
+
+  toHistory: function() {
+    wx.navigateTo({
+      url: '/pages/UserHistory/UserHistory',
+    })
+  },
+
   changeBGC: function(){
     app.globalData.dark_mode = true;
     // app.globalData.bgc = "#444444"

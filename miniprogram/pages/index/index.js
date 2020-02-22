@@ -21,7 +21,7 @@ function getDateTime() {
   var day = date.getDate();
   day = (day < 10 ? "0" : "") + day;
 
-  return year + month + day + hour + min;
+  return hour + min;
 }
 var x = false
 function generateID() {
@@ -43,7 +43,7 @@ Page({
         alpha: 1,
       },
     ],
-
+    loading: false,
     useableHeight: 0,
     languagePreference: 0,
     nav_height: app.globalData.nav_height,
@@ -77,6 +77,7 @@ Page({
     // longitude: 121.280464,
     show_tutorial: app.globalData.show_tutorial,
     nextEvent: {},
+    noEvent: {"_id": "No Upcoming Events", location: "", showtime: "Check back soon!", time: "", type: 0},
     announcementMessage: "",
     coords: [
       { id: 1, lat: 31.204534, long: 121.283491 },
@@ -91,12 +92,26 @@ Page({
     { id: 2, color: "green" },
     { id: 3, color: "orange" },
     { id: 4, color: "yellow" },
-    { id: 5, color: 4206963 }
+    { id: 5, color: "yellow"},
+    { id: 6, color: 4206963 }
     ],
+    raffleUpcoming: false,
+    raffleTime: 999999999,
+    show_announcement: false,
   },
 
 
+  toRaffle: function(){
+    wx.navigateTo({
+      url: '/pages/raffle/raffle',
+    })
+  },
 
+  onGotUserInfo: function (e) {
+    const app = getApp()
+    app.globalData.loggedIn = true
+    app.globalData.userInfo = e.detail.userInfo.nickName
+  },
 
   easterEgg: function () {
     app.globalData.easter_egg = true
@@ -111,12 +126,6 @@ Page({
   toSettings: function () {
     wx.navigateTo({
       url: '/pages/settings/settings',
-    })
-  },
-
-  buy_tickets: function () {
-    wx.navigateTo({
-      url: '/pages/bottom_nav2/bottom_nav2',
     })
   },
 
@@ -255,7 +264,12 @@ Page({
       },
     })
   },
+
   onLoad: function () {
+    this.setData({
+      loading: true,
+    })
+
     wx.cloud.init()
     var myThis = this
     app.globalData.time = parseInt(getDateTime(), 10)
@@ -263,7 +277,7 @@ Page({
       time: app.globalData.time,
       show_tutorial: app.globalData.show_tutorial,
     })
-
+    console.log(this.data.time)
     wx.cloud.callFunction({
       name: "pullstuff",
       data: {
@@ -275,7 +289,8 @@ Page({
       success: (res) => {
         var message = res.result.data[0].message
         myThis.setData({
-          announcementMessage: message
+          announcementMessage: message,
+          show_announcement: res.result.data[0].show,
         })
         console.log(message)
       }
@@ -298,29 +313,28 @@ Page({
         console.log(app.globalData.schedule)
         console.log("original schedule")
         for (var i = 0; i < scheduleArray.length; i++) {
-          if (scheduleArray[i].time >= 1345) {
-            nextEvent.push(scheduleArray[i]);
-          };
-        }
-        console.log("cut off schedule")
-        console.log(nextEvent)
-
-        var nextEvent2 = [];
-        for (var i = 0; i < nextEvent.length; i++) {
-          if (nextEvent[i].time < 1345 + 200) {
-            nextEvent2.push(nextEvent[i]);
-          };
+          if (getDateTime() - scheduleArray[i].time < 20 && getDateTime() - scheduleArray[i].time > - 20) {
+            nextEvent.push(scheduleArray[i])
+          }
         }
         console.log("final schedule")
-        console.log(nextEvent2)
+        console.log(nextEvent)
         console.log("finished with schedule: ")
         myThis.setData({
-          nextEvent: nextEvent2,
-          numEvents: nextEvent2.length,
+          nextEvent: nextEvent,
+          numEvents: nextEvent.length,
         })
         console.log(myThis.data.nextEvent)
         console.log("asdfasfdasfdsaf")
         console.log(myThis.data.nextEvent.length)
+
+        if (this.data.nextEvent.length == 0) {
+          nextEvent.push(this.data.noEvent)
+          myThis.setData({
+            nextEvent: nextEvent,
+            numEvents: nextEvent.length,
+          })
+        }
       },
 
     }),
@@ -375,7 +389,7 @@ Page({
               var myThis = this
               console.log("user name : " + this.data.userInfo.nickName)
               wx.getStorage({
-                key: 'key',
+                key: 'key2',
                 success(res) {
                   console.log("id key exists:")
                   app.globalData.ID = res.data
@@ -406,12 +420,18 @@ Page({
                   })
                 },
                 fail(res) {
+                  wx.getUserInfo({
+                    success: function(res){
+                      console.log("HERE IS THE DECRYPTED INFO")
+                      console.log(res.userInfo)
+                    }
+                  })
                   app.globalData.ID = generateID()
                   wx.cloud.init()
                   console.log(app.globalData.ID)
                   console.log(myThis.data.userInfo.nickName)
                   wx.setStorage({
-                    key: "key",
+                    key: "key2",
                     data: app.globalData.ID,
                     success: () => {
 
@@ -478,10 +498,16 @@ Page({
         this.setData({
           latitude: res.latitude,
           longitude: res.longitude,
+          loading: false,
         })
         // this.data.markers[1].latitude = res.latitude
         // this.data.markers[1].longitude = res.longitude
       },
+      fail: res=>{
+        this.setData({
+          loading: false,
+        })
+      }
     })
 
     // this.mapCtx = wx.createMapContext('myMap')
@@ -495,8 +521,232 @@ Page({
     // //   longitude: this.data.longitude,
     // // })
     console.log(this.data.numEvents)
+    for (var i = 0; i < app.globalData.raffleArray.length; i++){
+      if (app.globalData.raffleArray[i].time > getDateTime() && app.globalData.raffleArray[i].time < this.data.raffleTime){
+        this.setData({
+          raffleTime: app.globalData.raffleArray[i].time,
+          raffleUpcoming: true,
+        })
+      }
+    }
   },
 
+  onPullDownRefresh: function () {
+    wx.cloud.init()
+    var myThis = this
+    app.globalData.time = parseInt(getDateTime(), 10)
+    this.setData({
+      time: app.globalData.time,
+      show_tutorial: app.globalData.show_tutorial,
+    })
+    console.log(this.data.time)
+    wx.cloud.callFunction({
+      name: "pullstuff",
+      data: {
+        field: "announcement",
+      },
+      fail: (res) => {
+        console.log(res)
+      },
+      success: (res) => {
+        var message = res.result.data[0].message
+        myThis.setData({
+          announcementMessage: message
+        })
+        console.log(message)
+      }
+    })
+
+    wx.cloud.callFunction({
+      name: "pullstuff",
+      data: {
+        field: "schedule",
+      },
+      fail: (res) => {
+        console.log(res)
+      },
+      success: (res) => {
+
+        console.log("in schedule pull success")
+        var nextEvent = [];
+        var scheduleArray = res.result.data;
+        app.globalData.schedule = scheduleArray;
+        console.log(app.globalData.schedule)
+        console.log("original schedule")
+        for (var i = 0; i < scheduleArray.length; i++) {
+          if (getDateTime() - scheduleArray[i].time < 20 && getDateTime() - scheduleArray[i].time > - 20) {
+            nextEvent.push(scheduleArray[i])
+          }
+        }
+        console.log("final schedule")
+        console.log(nextEvent)
+        console.log("finished with schedule: ")
+        myThis.setData({
+          nextEvent: nextEvent,
+          numEvents: nextEvent.length,
+        })
+        console.log(myThis.data.nextEvent)
+        console.log("asdfasfdasfdsaf")
+        console.log(myThis.data.nextEvent.length)
+
+        if (this.data.nextEvent.length == 0) {
+          nextEvent.push(this.data.noEvent)
+          myThis.setData({
+            nextEvent: nextEvent,
+            numEvents: nextEvent.length,
+          })
+        }
+      },
+
+    }),
+
+      wx.getStorage({
+        key: 'languagePreference',
+        success: (res) => {
+          console.log(res.data)
+          console.log("in success of get storage for language")
+          app.globalData.languagePreference = res.data
+          this.setData({
+            languagePreference: app.globalData.languagePreference
+          })
+          console.log("Language Preference: " + this.data.languagePreference)
+        },
+        fail: (res) => {
+          console.log("fail")
+        }
+      })
+
+    console.log("in onload")
+    if (!wx.cloud) {
+      wx.reLaunch({
+        url: '../chooseLib/chooseLib',
+      })
+      return
+    }
+
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          myEaglebuck: app.globalData.myEaglebuck,
+          screenW: res.screenWidth,
+          screenH: res.screenHeight,
+        })
+        console.log(this.data.screenW)
+        console.log(res.SDKVersion)
+      },
+    })
+
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              this.setData({
+                avatarUrl: res.userInfo.avatarUrl,
+                userInfo: res.userInfo
+              })
+              var myThis = this
+              console.log("user name : " + this.data.userInfo.nickName)
+              wx.getStorage({
+                key: 'key2',
+                success(res) {
+                  console.log("id key exists:")
+                  app.globalData.ID = res.data
+                  console.log(app.globalData.ID)
+                  console.log("within the pull function " + app.globalData.ID)
+                  wx.cloud.callFunction({
+                    name: "pullstuff",
+                    data: {
+                      _id: app.globalData.ID,
+                      field: "test"
+                    },
+                    fail: (res) => {
+                      console.log(res)
+                    },
+                    success: (res) => {
+
+                      var retInfo = res.result.data[0]
+                      console.log("within success")
+                      console.log(res)
+                      console.log(retInfo)
+
+                      app.globalData.myEaglebuck = retInfo.eaglebuck
+                      console.log(retInfo.username + " has " + retInfo.eaglebuck + " Eaglebucks")
+                      myThis.setData({
+                        myEaglebuck: app.globalData.myEaglebuck,
+                      })
+                    },
+                  })
+                },
+                fail(res) {
+                  wx.getUserInfo({
+                    success: function (res) {
+                      console.log("HERE IS THE DECRYPTED INFO")
+                      console.log(res.userInfo)
+                    }
+                  })
+                  app.globalData.ID = generateID()
+                  wx.cloud.init()
+                  console.log(app.globalData.ID)
+                  console.log(myThis.data.userInfo.nickName)
+                  wx.setStorage({
+                    key: "key2",
+                    data: app.globalData.ID,
+                    success: () => {
+
+                      console.log('uniqe id key generated+ about to push new user entry')
+                      console.log("username" + myThis.data.userInfo.nickName)
+
+                      wx.cloud.callFunction({
+                        name: "pushstuff",
+                        data: {
+                          eaglebuck: app.globalData.myEaglebuck,
+                          username: myThis.data.userInfo.nickName,
+                          _id: app.globalData.ID
+                        },
+                        success: (res) => {
+                          console.log("within the pull function " + app.globalData.ID)
+                          wx.cloud.callFunction({
+                            name: "pullstuff",
+                            data: {
+                              _id: app.globalData.ID,
+                              field: "test"
+                            },
+                            fail: (res) => {
+                              console.log(res)
+                            },
+                            success: (res) => {
+
+                              var retInfo = res.result.data[0]
+                              console.log("within success")
+                              console.log(res)
+                              console.log(retInfo)
+
+                              app.globalData.myEaglebuck = retInfo.eaglebuck
+                              console.log(retInfo.username + " has " + retInfo.eaglebuck + " Eaglebucks")
+                              myThis.setData({
+                                myEaglebuck: app.globalData.myEaglebuck,
+                              })
+                            },
+                          })
+                        },
+
+                      })
+
+                    }
+                  })
+                },
+
+              })
+            }
+          })
+        }
+      }
+    })
+
+  },
 
 
   moveToLocation: function () {
@@ -506,24 +756,6 @@ Page({
 
 
   onReady: function () {
-
-
-    // this.mapCtx.moveToLocation()
-    // if (myEaglebuck < 50) {
-    //   this.setData({
-    //     ticket: "/images/ticket.png"
-    //   })
-    // }
-    // else if (myEaglebuck < 100) {
-    //   this.setData({
-    //     ticket: "/images/home.png"
-    //   })
-    // }
-    // else {
-    //   this.setData({
-    //     ticket: "/images/food.png"
-    //   })
-    // }
   },
 
   onGetUserInfo: function (e) {
@@ -613,5 +845,12 @@ Page({
       url: '/pages/tickets/spend_tickets/spend_tickets',
     })
   },
+
+  close_popup: function(){
+    this.setData({
+      loading: false
+    })
+    console.log(this.data.loading)
+  }
 
 })

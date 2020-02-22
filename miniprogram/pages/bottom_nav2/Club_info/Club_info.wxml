@@ -1,10 +1,12 @@
 
 
-<image
-src="https://bluepiglet30.github.io/IFfilehost/Header.png"
+
+<audio hidden = "{{true}}" src="{{src}}" id="myAudio"></audio>
+
+<image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
 class = "header_alt">
 </image>
-  <view class = "whiteContainer" style="height: 100px;">
+  <view class = "whiteContainer" style="margin-top: 0px; height: 100px;">
         <view class= "titleText" style="font-family:CO;">
         {{boothName}}
       </view>
@@ -14,17 +16,21 @@ class = "header_alt">
   </view>
   <view class="whiteContainer" style="height: 50px;">
     <view class="tr">
-      <view class="th" style="font-family:CO;">Transfered#</view>
-      <view class="th" style="font-family:CO;">Time</view>
-      <view class="th" style="font-family:CO;">Username</view>
+      <view class="th" style="font-family:CBO;">Transferred#</view>
+      <view class="th" style="font-family:CBO;">Time</view>
+      <view class="th" style="font-family:CBO;">Username</view>
+      <view class="th" style="font-family:CBO;">Refund</view>
     </view>
   </view>
-  <block wx:for="{{clubTransaction}}" wx:key="{{_id}}">
-    <view class="whiteContainer" style="height: 50px">
+  <block wx:for="{{clubTransaction}}" wx:key="{{_id}}" wx:for-index="i">
+    <view class="whiteContainer" style="margin-top: 2px; height: 50px">
       <view class="tr">
         <view class="td" style="font-family:CO;">{{item.eaglebuck}}</view>
         <view class="td" style="font-family:CO;">{{item.time}}</view>
         <view class="td" style="font-family:CO;">{{item.username}}</view>
+        <view class = "td">
+          <image src="/images/right_arrow.png" class="right_arrow" data-idx="{{i}}" bindtap="refund">Refund</image>
+        </view>
       </view>
     </view>
   </block>
@@ -33,7 +39,7 @@ class = "header_alt">
   <button bindtap='pullMore'> Load More Transactions </button>
 </view>
 
-<view class="whiteContainer">
+<!-- <view class="whiteContainer">
   <form bindsubmit='refund'>
     <input name="number" placeholder="number">
     </input>
@@ -41,14 +47,47 @@ class = "header_alt">
       Submit # for refund
     </button>
   </form>
-</view>
+</view> -->
 
 <view class="whiteContainer" style="font-family:CO;">
-  <button bindtap='reload'> Reload </button>
+  <button bindtap='showQR'> {{boothName}}'s QR code </button>
+</view>
+<view wx:if="{{showQR}}">
+  <view class="whiteContainer">
+    <image class="center" style="width:250px" src="https://api.qrserver.com/v1/create-qr-code/?data={{qrData}}&amp;size=100x100" alt="" title="" />
+  </view>
 </view>
 
 <view class="whiteContainer" style="font-family:CO;">
   <button bindtap='logout'> Logout </button>
+</view>
+
+<view style="height:100px"/>
+
+<view hidden = "{{!refunded}}" style="position: fixed; width:100%; height:{{useableHeight+80}}px; z-index:10; background:grey; opacity: 0.5"/>
+
+<view hidden = "{{!refunded}}" class = "center" style="position: fixed; top: {{useableHeight/2-80}}px; left: 93.75rpx; z-index: 15; background: white; border-radius: 15px; width: 75%; height: 300rpx">
+  <view style="height:70rpx"/>
+  <view  style="font-family: CO; font-size:15px; text-align: center; opacity: 1"> This transaction has already been refunded </view>
+  <button class = "center" style="font-family: CBO; font-size:20px; text-align: center; opacity: 1" bindtap="refunded">OK</button>
+</view>
+
+
+<!-- <view hidden = "{{!comfirmRefund}}" class = "center" style="position: fixed; top: {{useableHeight/2-80}}px; left: 93.75rpx; z-index: 15; background: white; border-radius: 15px; width: 75%; height: 300rpx">
+  <view style="height:70rpx"/>
+  <view  style="font-family: CO; font-size:15px; text-align: center; opacity: 1"> Refunding this transaction will give back the Eaglebucks to the user. Are you sure? </view>
+  <button class = "center" style="font-family: CBO; font-size:20px; text-align: center; opacity: 1" bindtap="refund">OK</button>
+</view> -->
+
+<!-- <view class="whiteContainer" style="font-family:CO;">
+  <button bindtap='test'> Play sound </button>
+</view> -->
+
+<view hidden = "{{!refunding}}" style="position: fixed; width:100%; height:{{useableHeight+80}}px; z-index:10; background:grey; opacity: 0.5"/>
+
+<view hidden = "{{!refunding}}" class = "center" style="position: fixed; top: {{useableHeight/2-80}}px; left: 93.75rpx; z-index: 15; background: white; border-radius: 15px; width: 75%; height: 200rpx">
+  <view style="height:70rpx"/>
+  <view class = "center" style="font-family: CO; font-size:20px; text-align: center; opacity: 1"> Refunding... </view>
 </view>
 
 <!-- ----------------------------------- -->
@@ -84,3 +123,5 @@ class = "header_alt">
 
 
 <button bindtap='reload'> reload </button> -->
+
+<include src="/pages/master_nav/master_nav.wxml"/>

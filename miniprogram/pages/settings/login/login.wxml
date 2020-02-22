@@ -1,10 +1,22 @@
-<view class="entry_field">
-<input placeholder="Username" bindinput="bindUserInput" auto-focus value="{{''}}"/>
-</view>
-<view class="entry_field">
-<input placeholder="Password" bindinput="bindPassInput" auto-focus password="{{true}}" value="{{''}}"/>
+<view id="un">
+  <view class = "center">
+  Login to your booth
+  </view>
+  <view style = "height: 40rpx"/>
+  <view class="entry_field">
+    <text class="t">Username</text>
+    <input class = "textfield" bindinput="bindUserInput" auto-focus value="{{''}}"/>
+  </view>
+  <view style = "height: 40rpx"/>
+  <view class="entry_field">
+    <text class="t">Password</text>
+    <input class = "textfield" bindinput="bindPassInput" auto-focus password="{{true}}" value="{{''}}"/>
+  </view>
 </view>
 
 <button bindtap="submit">Login</button>
 
-<view hidden="{{errorHidden}}">incorrect username or password</view>
+<view class = "center" id="errm" hidden="{{errorHidden}}" style = "color: #c4000a">
+<view style="height:40rpx"/>
+Incorrect username or password.
+</view>

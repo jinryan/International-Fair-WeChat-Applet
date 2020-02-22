@@ -1,0 +1,28 @@
+<image
+src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
+class = "header_alt">
+</image>
+<view
+class = "filler">
+</view>
+
+<block wx:for="{{raffleArray}}" wx:key="{{_id}}">
+<view class="raffleRound">
+<view class="raffleText">
+{{item._id}} - {{item.time/100}}:00
+</view>
+</view>
+<!-- <view style="height:10px;"/> -->
+<block wx:for="{{item.prizes}}" wx:key="{{_id}}" wx:for-index="i">
+  <view class = "center">
+  <!-- <view class="imageView"> -->
+      <!-- <image class = "prizeImg" src="{{{'cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/menu_pics/' + name + '/' + i + '.jpg'}}" mode="aspectFill"/></view> -->
+      <!-- <image class = "prizeImg" src="/images/prize.png" mode="aspectFill"/></view> -->
+      <view class="prizeName">{{item.name}}</view>
+      <view class="prizePrice" wx:if="{{item.price==0}}">Value: N/A ¥</view>
+      <view class="prizePrice" wx:else>Value: {{item.price}}¥</view>
+      <view class="prizeQuantity"> x{{item.amount}}</view>
+      <!-- <image src="/images/right_arrow.png" class="right_arrow"></image> -->
+</view>
+</block>
+</block>

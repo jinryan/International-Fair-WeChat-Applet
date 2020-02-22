@@ -1,0 +1,80 @@
+<audio hidden = "{{true}}" src="{{src}}" id="myAudio"></audio>
+<image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs-1300310271/Header.png"
+class = "header_alt">
+</image>
+
+<view class="profile_view">
+<image class="profile_pic" src="{{avatarUrl}}"/>
+</view>
+<view class="user_text"> <view style = "width: 100%; font-size: 40rpx; text-align: center; font-family:CO;">
+  <view style="height:12px"/>
+  User: {{userInfo.nickName}}
+  </view>
+</view>
+
+  <view class="whiteContainer" style="height: 50px;">
+    <view class="tr">
+      <view class="th" style="font-family:CBO;">Transferred#</view>
+      <view class="th" style="font-family:CBO;">Time</view>
+      <view class="th" style="font-family:CBO;">Booth Name</view>
+    </view>
+  </view>
+  <block wx:for="{{userTransaction}}" wx:key="{{_id}}" wx:for-index="i">
+    <view class="whiteContainer" style="margin-top: 2px; height: 50px">
+      <view class="tr">
+        <view class="td" style="font-family:CO;">{{item.eaglebuck}}</view>
+        <view class="td" style="font-family:CO;">{{item.time}}</view>
+        <view class="td" style="font-family:CO;">{{item.boothName}}</view>
+      </view>
+    </view>
+  </block>
+
+<view class="whiteContainer" style="font-family:CO;">
+  <button bindtap='pullMore'> Load More Transactions </button>
+</view>
+
+<!-- <view class="whiteContainer">
+  <form bindsubmit='refund'>
+    <input name="number" placeholder="number">
+    </input>
+    <button form-type='submit' style="font-family:CO;">
+      Submit # for refund
+    </button>
+  </form>
+</view> -->
+
+
+
+<!-- ----------------------------------- -->
+<!-- <view>{{boothName}} has {{boothEagleBucks}} eaglebucks</view>
+  <view class="tr bg-w">
+    <view class="th">BoothName</view>
+    <view class="th ">Transfered #</view>
+    <view class="th ">time </view>
+    <view class="th ">User </view>
+  </view>
+  <block wx:for="{{clubTransaction}}" wx:key="{{_id}}">
+    <view class="tr bg-g" >
+      <view class="td">{{item.boothName}}</view>
+      <view class="td">{{item.eaglebuck}}</view>
+      <view class="td">{{item.time}}</view>
+      <view class="td">{{item.username}}</view>
+    </view>
+  </block>
+
+
+
+  <form 
+    bindsubmit='refund'>
+  <input 
+      name="number" 
+      placeholder="number">
+  </input>
+  <button 
+      form-type='submit'>
+    Submit
+  </button>
+</form>
+
+
+<button bindtap='reload'> reload </button> -->

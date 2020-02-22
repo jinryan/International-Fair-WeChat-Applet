@@ -1,13 +1,17 @@
 <!--miniprogram/pages/settings/credits/credits.wxml-->
+<image src="cloud://if-cloud-base-hwtxs.6966-if-cloud-base-hwtxs/team.jpeg" style="width: 750rpx; height: 563rpx"/>
+<view style="width: 650rpx; margin-left: 50rpx; font-family: CO; margin-top: 20rpx">
 <text>Developers:
 Barron Han
 Stuart Tsao
 Samuel Yu
 Heon Lee 
-Emily Song
 Ryan Jin 
-
+Emily Song
+</text>
+<text style="text-align: right; position: absolute; right: 50rpx; top: 550rpx">
 Designers:
 Jacqueline Cheng
 Vicky Jen
-Jasmine idkherlastname </text>
+Jasmine Zhang </text>
+</view>
